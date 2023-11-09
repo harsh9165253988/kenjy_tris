@@ -35,20 +35,20 @@
 
     <Button
         android:id="@+id/planetButton"
+        style="@style/CustomButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Planet"
 
         android:layout_below="@id/universeButton"
-        android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
-        android:onClick="animatePlanet"
-        style="@style/CustomButtonStyle"
+        android:layout_marginTop="60dp"
         android:background="@drawable/custom_button_background"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:onClick="animatePlanet"
         android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"/>
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:text="volenteer"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 </RelativeLayout>
