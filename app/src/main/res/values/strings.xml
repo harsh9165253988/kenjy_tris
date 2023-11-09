@@ -9,7 +9,7 @@
     <string name="already_member">I am already a member.</string>
     <string name="new_member">New Here ? Sign up instead.</string>
     <string name="nameerror">Enter a valid name</string>
-    <string name="emailerror">Enter a valid email</string>
+    <string name="emailerror">Enter a valid gmail</string>
     <string name="mobileerror">Enter a valid mobile</string>
     <string name="passworderror">The password must contain at least 8 character,and include uppercase and lowercase,number and a special character</string>
 </resources>
