@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.custom.SimpleCustomValidation;
 
 public class userSignup extends AppCompatActivity {
     Button requestButton;
@@ -36,7 +37,22 @@ public class userSignup extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.editTextMobile, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.editPassword, regexPassword, R.string.passworderror);
+        // Adding custom validation for age
+        awesomeValidation.addValidation(this, R.id.editTextAge, new SimpleCustomValidation() {
+            @Override
+            public boolean compare(String input) {
+                // Check if age is 18 or older
+                try {
+                    int age = Integer.parseInt(input);
+                    return age >= 14;
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            }
+        }, R.string.ageerror);
     }
+
+
     private View.OnClickListener mMyListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (v.getId() == R.id.buttonSign) {
