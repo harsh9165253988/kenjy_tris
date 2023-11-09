@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+    android:layout_alignParentTop="true"
+    app:lottie_autoPlay="true"
+    app:lottie_rawRes="@raw/splash"
+    app:lottie_loop="true"
+    app:lottie_speed="1.0" />
+
+    <Button
+        android:id="@+id/universeButton"
+        style="@style/CustomButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+         android:layout_centerHorizontal="true"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/custom_button_background"
+        android:onClick="animateUniverse"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:text="Organization"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/planetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Planet"
+
+        android:layout_below="@id/universeButton"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="animatePlanet"
+        style="@style/CustomButtonStyle"
+        android:background="@drawable/custom_button_background"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+</RelativeLayout>
