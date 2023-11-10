@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,7 +17,7 @@
         app:lottie_loop="true"
         android:scaleType="centerCrop"
         app:lottie_rawRes="@raw/background"
-         />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,20 +40,20 @@
                 android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
-               <com.airbnb.lottie.LottieAnimationView
-                   android:layout_width="1500dp"
-                   android:layout_height="150dp"
-                   android:layout_gravity="center_horizontal"
-                   app:lottie_rawRes="@raw/planet"
-                   app:lottie_loop="true"
-                  app:lottie_autoPlay="true"
-                   />
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="1500dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    app:lottie_rawRes="@raw/planet"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="HUMAN"
+                    android:text="ORGANIZATION"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:textSize="25sp" />
@@ -113,22 +114,6 @@
                         android:textColor="#FFFFFF" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_border"
-                    android:hint="Select Job"
-                    android:textColorHint="#E80000"
-                    app:hintTextColor="#FAFAFA">
-
-                    <Spinner
-                        android:id="@+id/spinnerJob"
-                        style="@style/SpinnerStyle"
-                        android:visibility="visible" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

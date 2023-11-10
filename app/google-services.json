@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "781243185038",
+    "firebase_url": "https://kenjitris-adad0-default-rtdb.firebaseio.com",
+    "project_id": "kenjitris-adad0",
+    "storage_bucket": "kenjitris-adad0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781243185038:android:10ddae5691ef74df2b16df",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX1q_fdzUIaIzZyCyfGzfWEQjTZSViyMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

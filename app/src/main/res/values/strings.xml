@@ -12,5 +12,7 @@
     <string name="emailerror">Enter a valid gmail</string>
     <string name="mobileerror">Enter a valid mobile</string>
     <string name="ageerror">Age must be 14 or older</string>
+    <string name="joberror">Please select a job</string>
+
     <string name="passworderror">The password must contain at least 8 character,and include uppercase and lowercase,number and a special character</string>
 </resources>
