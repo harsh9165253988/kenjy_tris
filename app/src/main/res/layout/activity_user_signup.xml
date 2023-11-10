@@ -12,11 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        android:scaleType="centerCrop"
-        app:lottie_rawRes="@raw/background"
-         />
+        app:lottie_rawRes="@raw/background" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="HUMAN"
+                    android:text="VOLENTEER"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:textSize="25sp" />
@@ -115,16 +114,22 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/joblist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:background="@drawable/spinner_border"
-                    android:hint="Select Job"
-                    android:textColorHint="#E80000"
-                    app:hintTextColor="#FAFAFA">
+                    android:ems="10"
+                    android:hint="Job List"
+                    app:boxStrokeColor="#877878"
+                    android:textColorHint="#FFFFFF"
+                    app:hintEnabled="true"
+                    app:hintTextColor="#FFFFFF">
 
                     <Spinner
-                        android:id="@+id/spinnerJob"
+                        android:id="@+id/spinneJoblist"
                         style="@style/SpinnerStyle"
+
                         android:visibility="visible" />
 
                 </com.google.android.material.textfield.TextInputLayout>

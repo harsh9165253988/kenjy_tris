@@ -42,4 +42,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.basgeekball:awesome-validation:4.3")
     implementation ("com.airbnb.android:lottie:6.1.0")
+    implementation ("androidx.core:core-ktx:1.7.0")
 }

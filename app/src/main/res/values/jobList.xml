@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="job_options">
+        <item>Select Job</item>
+        <item>Astronaut</item>
+        <item>space engineer</item>
+        <!-- Add more items as needed -->
+    </string-array>
+
+</resources>

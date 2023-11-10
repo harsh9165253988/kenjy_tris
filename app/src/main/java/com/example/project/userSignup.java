@@ -2,13 +2,18 @@ package com.example.project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +22,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.custom.SimpleCustomValidation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -44,6 +50,30 @@ public class userSignup extends AppCompatActivity {
 
         requestButton = findViewById(R.id.buttonSign);
         alreadySignin = findViewById(R.id.already_signin);
+        Spinner spinnerJob = findViewById(R.id.spinneJoblist);
+        TextInputLayout textInputLayout = findViewById(R.id.joblist);
+        textInputLayout.setDefaultHintTextColor(ContextCompat.getColorStateList(this, android.R.color.white));
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.job_options,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerJob.setAdapter(adapter);
+        spinnerJob.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Set the selected item text color to black
+                ((TextView) parentView.getChildAt(0)).setTextColor(Color.WHITE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
+            }
+        });
+
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
