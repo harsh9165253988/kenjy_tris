@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +64,40 @@ private  EditText fullname;
         F=findViewById(R.id.radioFemale);
         requestButton = findViewById(R.id.buttonSign);
         alreadySignin = findViewById(R.id.already_signin);
+        Spinner spinnerJob = findViewById(R.id.spinneJoblist);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.job_options,
+                android.R.layout.simple_spinner_item
+        );
+
+// Set the layout resource for each spinner item
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+// Set the adapter to the spinner
+        spinnerJob.setAdapter(adapter);
+
+// Set a listener to handle the selection
+        spinnerJob.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // If the hint item is selected, set the text color to gray
+                if (position == 0) {
+                    ((TextView) parentView.getChildAt(0)).setTextColor(Color.GRAY);
+                } else {
+                    // Set the selected item text color to black
+                    ((TextView) parentView.getChildAt(0)).setTextColor(Color.WHITE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
+            }
+        });
+
+// Set the hint as the default selection
+        spinnerJob.setSelection(0, false);
 
 
 
