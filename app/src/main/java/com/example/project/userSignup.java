@@ -2,38 +2,47 @@ package com.example.project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.custom.SimpleCustomValidation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class userSignup extends AppCompatActivity {
 
     private Button requestButton;
+    private RadioButton M;
+    private  RadioButton F;
     private TextView alreadySignin;
     private EditText emailEditText;
     private EditText passwordEditText;
+private  EditText fullname;
+    private  EditText number;
+    private  EditText age;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth firebaseAuth;
+    FirebaseDatabase rootnode;
+    DatabaseReference reference;
+    int i=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,37 +51,16 @@ public class userSignup extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        final EditText fullname = findViewById(R.id.editTextName);
+        fullname = findViewById(R.id.editTextName);
         emailEditText = findViewById(R.id.editTextEmail);
-        final EditText number = findViewById(R.id.editTextMobile);
-        final EditText age = findViewById(R.id.editTextAge);
+        number = findViewById(R.id.editTextMobile);
+        age = findViewById(R.id.editTextAge);
         passwordEditText = findViewById(R.id.editPassword);
-
+        M=findViewById(R.id.radioMale);
+        F=findViewById(R.id.radioFemale);
         requestButton = findViewById(R.id.buttonSign);
         alreadySignin = findViewById(R.id.already_signin);
-        Spinner spinnerJob = findViewById(R.id.spinneJoblist);
-        TextInputLayout textInputLayout = findViewById(R.id.joblist);
-        textInputLayout.setDefaultHintTextColor(ContextCompat.getColorStateList(this, android.R.color.white));
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.job_options,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerJob.setAdapter(adapter);
-        spinnerJob.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Set the selected item text color to black
-                ((TextView) parentView.getChildAt(0)).setTextColor(Color.WHITE);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
-            }
-        });
 
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -101,9 +89,41 @@ public class userSignup extends AppCompatActivity {
             public void onClick(View v) {
                 if (awesomeValidation.validate()) {
                     registerUser();
+                    rootnode = FirebaseDatabase.getInstance();
+                    reference =rootnode.getReference("human");
+
+                    String name,email,mob,ag,pd,m,f,gender;
+                    name = fullname.getEditableText().toString();
+                    email = emailEditText.getEditableText().toString();
+                    mob =number .getEditableText().toString();
+                    ag= age.getEditableText().toString();
+                    pd = passwordEditText.getEditableText().toString();
+                    m = M.isChecked() ? "Male" : "";
+                    f = F.isChecked() ? "Female" : "";
+
+                    if (M.isChecked()) {
+                        gender = "Male";
+                    } else if (F.isChecked()) {
+                        gender = "Female";
+                    } else {
+                        // Handle the case where neither radio button is checked
+                        gender = ""; // or set it to a default value
+                    }
+
+
+
+                    humandetail hd=new humandetail(name,email,mob,ag,pd,gender);
+
+                    reference.child(name).setValue(hd);
+
                 }
-            }
+                }
+
+
+
+
         });
+
 
         alreadySignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,17 +135,19 @@ public class userSignup extends AppCompatActivity {
     }
 
     private void registerUser() {
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(userSignup.this, "Signup successful", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(userSignup.this, "Signup successful", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(userSignup.this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(userSignup.this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
