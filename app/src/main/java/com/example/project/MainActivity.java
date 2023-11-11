@@ -24,6 +24,13 @@ public class MainActivity extends AppCompatActivity {
         ObjectAnimator scaleAnimator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.universe_scale);
         scaleAnimator.setTarget(universeButton);
         scaleAnimator.start();
+        universeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,organizationSignup.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -32,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         ObjectAnimator rotateAnimator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.planet_rotate);
         rotateAnimator.setTarget(planetButton);
         rotateAnimator.start();
-        Button userSign = findViewById(R.id.planetButton);
-        userSign.setOnClickListener(new View.OnClickListener() {
+        //Button userSign = findViewById(R.id.planetButton);
+        planetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start the NextActivity when the button is clicked

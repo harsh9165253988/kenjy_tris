@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="locations">
+        <item>Enter location</item>
+        <item>Athens</item>
+        <item>Asylum</item>
+        <item>Eudoxia</item>
+        <item>Farhome</item>
+        <item>Galbraith</item>
+        <item>Gedara</item>
+        <item>Gethen</item>
+        <item>Harris</item>
+        <item>Kronos</item>
+        <item>Kunlun </item>
+        <item>Magpie</item>
+        <item>New Cyprus</item>
+        <item>New Egypt</item>
+        <item>New Mars</item>
+        <item>New Roma</item>
+        <item>Parker</item>
+        <item>Thanjavur</item>
+
+        <!-- Add more items as needed -->
+    </string-array>
+</resources>
