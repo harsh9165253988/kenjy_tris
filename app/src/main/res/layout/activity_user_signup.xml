@@ -113,11 +113,15 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 <TextView
+
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:hint="select skills and interest"
+
     android:id="@+id/jobSelection"
     android:layout_margin="10dp"
-    android:hint="select skills and interest"
+
     android:textColorHint="#574848"
     android:textSize="17dp"
 
