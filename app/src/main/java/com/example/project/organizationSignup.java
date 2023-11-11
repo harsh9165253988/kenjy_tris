@@ -16,11 +16,14 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class organizationSignup extends AppCompatActivity {
     private AwesomeValidation awesomeValidation;
     private Button signUp;
     private TextView signIn;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class organizationSignup extends AppCompatActivity {
 
         signUp = findViewById(R.id.buttonSign);
         signIn = findViewById(R.id.already_signin);
+        mAuth = FirebaseAuth.getInstance();
 
         Spinner spinnerJob = findViewById(R.id.spinneJoblist);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -51,7 +55,8 @@ public class organizationSignup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (awesomeValidation.validate()) {
-                    Toast.makeText(getApplicationContext(), "It's Working!", Toast.LENGTH_LONG).show();
+                    // If validations pass, attempt to sign up the user
+                    signUpUser();
                 }
             }
         });
@@ -92,4 +97,28 @@ public class organizationSignup extends AppCompatActivity {
         // Set the hint as the default selection
         spinnerJob.setSelection(0, false);
     }
+
+    private void signUpUser() {
+        String email = ((TextView) findViewById(R.id.editTextEmail)).getText().toString().trim();
+        String password = ((TextView) findViewById(R.id.editPassword)).getText().toString().trim();
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign up success, update UI with the signed-in user's information
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Toast.makeText(getApplicationContext(), "Sign up successful!", Toast.LENGTH_SHORT).show();
+                        // You can add additional logic here, such as navigating to the main activity
+                    } else {
+                        // If sign up fails, display a message to the user.
+                        Toast.makeText(getApplicationContext(), "Sign up failed. " + task.getException().getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }
+
+
+
+
+
