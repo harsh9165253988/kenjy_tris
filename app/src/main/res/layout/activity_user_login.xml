@@ -12,11 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        android:scaleType="centerCrop"
-        app:lottie_rawRes="@raw/background"
-        />
+        app:lottie_rawRes="@raw/background" />
 
     <LinearLayout
         android:layout_width="match_parent"
