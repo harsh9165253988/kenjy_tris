@@ -4,21 +4,28 @@ import java.net.PortUnreachableException;
 
 public class humandetail {
 
-    String name,email,mob,age,pswd,gender;
+    String name,email,mob,age,pswd,gender,skl;
 
-    public humandetail(String name, String email, String mob, String age, String pswd,String gender) {
+    public humandetail(String name, String email, String mob, String age, String pswd,String gender,String skl) {
         this.name = name;
         this.email = email;
         this.mob = mob;
         this.age = age;
         this.pswd = pswd;
         this.gender=gender;
+        this.skl=skl;
     }
     humandetail(){
 
     }
 
+    public String getSkl() {
+        return skl;
+    }
 
+    public void setSkl(String skl) {
+        this.skl = skl;
+    }
 
     public String getGender() {
         return gender;

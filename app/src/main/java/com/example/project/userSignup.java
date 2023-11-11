@@ -46,6 +46,8 @@ public class userSignup extends AppCompatActivity {
     private RadioButton M;
     private  RadioButton F;
     private TextView alreadySignin;
+
+   // private  TextView skill;
     private EditText emailEditText;
     private EditText passwordEditText;
 private  EditText fullname;
@@ -53,6 +55,8 @@ private  EditText fullname;
     private  EditText age;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth firebaseAuth;
+   private  TextView jobSelectonMenu;
+    boolean [] selectjob;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
     int i=0;
@@ -62,8 +66,7 @@ private  EditText fullname;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-      TextView jobSelectonMenu;
-      boolean [] selectjob;
+
         ArrayList<Integer> jobList =new ArrayList<>();
         String[] jobarray = getResources().getStringArray(R.array.job_options);
         setContentView(R.layout.activity_user_signup);
@@ -73,6 +76,7 @@ private  EditText fullname;
         fullname = findViewById(R.id.editTextName);
         emailEditText = findViewById(R.id.editTextEmail);
         number = findViewById(R.id.editTextMobile);
+       // skill= findViewById(R.id.jobSelection);
         age = findViewById(R.id.editTextAge);
         passwordEditText = findViewById(R.id.editPassword);
         M=findViewById(R.id.radioMale);
@@ -164,9 +168,10 @@ private  EditText fullname;
                     rootnode = FirebaseDatabase.getInstance();
                     reference =rootnode.getReference("human");
 
-                    String name,email,mob,ag,pd,m,f,gender;
+                    String name,email,mob,ag,pd,m,f,gender,skl;
                     name = fullname.getEditableText().toString();
                     email = emailEditText.getEditableText().toString();
+                    skl =jobSelectonMenu.getText().toString();
                     mob =number .getEditableText().toString();
                     ag= age.getEditableText().toString();
                     pd = passwordEditText.getEditableText().toString();
@@ -184,7 +189,7 @@ private  EditText fullname;
 
 
 
-                    humandetail hd=new humandetail(name,email,mob,ag,pd,gender);
+                    humandetail hd=new humandetail(name,email,mob,ag,pd,gender,skl);
 
                     reference.child(name).setValue(hd);
 
