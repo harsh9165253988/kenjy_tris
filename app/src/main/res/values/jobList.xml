@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="job_options">
-        <item>Select Job</item>
-        <item>Astronaut</item>
-        <item>space engineer</item>
-        <item>tailer</item>
-        <!-- Add more items as needed -->
+        <item>Communication and nevigation(satellites)</item>
+        <item>space farming</item>
+        <item>space architecture</item>
+        <item>Life support system</item>
+        <item>Medical support staff</item>
+        <item>Doctor(surgeon)</item>
+        <item>Combat and tactics</item>
+        <item>Piolet(Spacecraft)</item>
+        <item>Astrobiologist</item>
+        <item>Material Scientist</item>
+        <item>Astronomer</item>
+        <item>Planetary Scientist</item>
+
     </string-array>
 
 </resources>

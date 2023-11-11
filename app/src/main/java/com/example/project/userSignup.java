@@ -1,8 +1,10 @@
 package com.example.project;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,8 +13,10 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,6 +33,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class userSignup extends AppCompatActivity {
 
@@ -51,6 +61,11 @@ private  EditText fullname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+      TextView jobSelectonMenu;
+      boolean [] selectjob;
+        ArrayList<Integer> jobList =new ArrayList<>();
+        String[] jobarray = getResources().getStringArray(R.array.job_options);
         setContentView(R.layout.activity_user_signup);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -64,40 +79,59 @@ private  EditText fullname;
         F=findViewById(R.id.radioFemale);
         requestButton = findViewById(R.id.buttonSign);
         alreadySignin = findViewById(R.id.already_signin);
-        Spinner spinnerJob = findViewById(R.id.spinneJoblist);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.job_options,
-                android.R.layout.simple_spinner_item
-        );
-
-// Set the layout resource for each spinner item
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-// Set the adapter to the spinner
-        spinnerJob.setAdapter(adapter);
-
-// Set a listener to handle the selection
-        spinnerJob.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        jobSelectonMenu=findViewById(R.id.jobSelection);
+        selectjob= new boolean[jobarray.length];
+        jobSelectonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // If the hint item is selected, set the text color to gray
-                if (position == 0) {
-                    ((TextView) parentView.getChildAt(0)).setTextColor(Color.GRAY);
-                } else {
-                    // Set the selected item text color to black
-                    ((TextView) parentView.getChildAt(0)).setTextColor(Color.WHITE);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
+            public void onClick(View view) {
+                AlertDialog.Builder builder =new AlertDialog.Builder(userSignup.this);
+                builder.setTitle("Select job");
+                builder.setCancelable(false);
+                builder.setMultiChoiceItems(jobarray, selectjob, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                        if (b){
+                            jobList.add(i);
+                            Collections.sort(jobList);
+                        }else {
+                            jobList.remove(i);
+                        }
+                    }
+                });
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        StringBuilder stringBuilder=new StringBuilder();
+                        for(int j=0;j<jobList.size();j++){
+                            stringBuilder.append(jobarray[jobList.get(j)]);
+                            if(j!=jobList.size()-1){
+                                stringBuilder.append(", ");
+                            }
+                        }
+                        jobSelectonMenu.setText(stringBuilder.toString());
+                    }
+                });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setNeutralButton("clear all", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        for(int j=0;j<selectjob.length;j++){
+                            selectjob[j]=false;
+                            jobList.clear();
+                            jobSelectonMenu.setText("");
+                        }
+                    }
+                });
+                builder.show();
             }
         });
 
-// Set the hint as the default selection
-        spinnerJob.setSelection(0, false);
+
 
 
 

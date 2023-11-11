@@ -112,27 +112,20 @@
                         android:textColor="#FFFFFF" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/jobSelection"
+    android:layout_margin="10dp"
+    android:hint="select skills and interest"
+    android:textColorHint="#574848"
+    android:textSize="17dp"
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/joblist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/spinner_border"
-                    android:ems="10"
-                    android:hint="Job List"
-                    app:boxStrokeColor="#877878"
-                    android:textColorHint="#FFFFFF"
-                    app:hintEnabled="true"
-                    app:hintTextColor="#FFFFFF">
-
-                    <Spinner
-                        android:id="@+id/spinneJoblist"
-                        style="@style/SpinnerStyle"
-
-                        android:visibility="visible" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+    android:padding="12dp"
+    android:drawablePadding="16dp"
+    android:drawableEnd="@drawable/dropdown1"
+    android:ems="10"
+    android:background="@drawable/spinner_border"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -198,6 +191,7 @@
                         android:textColorHighlight="#FFC30E" /> <!-- Add margin to the start (left side) -->
                 </RadioGroup>
 
+
                 <Button
                     android:id="@+id/buttonSign"
                     android:layout_margin="20dp"
@@ -216,6 +210,7 @@
                     android:text="@string/already_member"/>
 
             </LinearLayout>
+
         </ScrollView>
 
 
