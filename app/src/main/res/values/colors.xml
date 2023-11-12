@@ -6,8 +6,17 @@
     <color name="primaryDarkColor">#002171</color>
     <color name="accentColor">#ff4081</color>
     <color name="textColor">#ffffff</color>
-    <color name="colorPrimary">#623FD7</color>
+    <color name="colorPrimary">#243796</color>
     <color name="colorPrimaryDark">#833AC7</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorWhite">#FFFFFF</color>
+<color name="grey">#DCD4D4</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="lavender">#8692f7</color>
+    <color name="red">#c70000</color>
+    <color name="green">#00ff00</color>
 </resources>

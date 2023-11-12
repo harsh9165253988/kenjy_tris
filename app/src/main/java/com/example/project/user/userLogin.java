@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.project.LocationOwner.userDashboard;
+import com.example.project.R;
+import com.example.project.user.userSignup;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -94,6 +97,8 @@ checkbox();
                             editor.apply();
                             // Sign-in successful
                             Toast.makeText(getApplicationContext(), "Sign-in successful", Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(getApplicationContext(), userDashboard.class);
+                            startActivity(intent);
                             // You can navigate to another activity upon successful sign-in if needed.
                         } else {
                             // Sign-in failed
