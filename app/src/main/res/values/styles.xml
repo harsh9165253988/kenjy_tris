@@ -26,5 +26,9 @@
         <item name="android:textColor">@color/colorWhite</item>
         <!-- Add more styling attributes as needed -->
     </style>
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
 </resources>
