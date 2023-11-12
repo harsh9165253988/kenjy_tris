@@ -4,21 +4,55 @@
         <item>Enter location</item>
         <item>Athens</item>
         <item>Asylum</item>
+        <item>Arcadia</item>
+        <item>Castila</item>
+        <item>Chrysanthemum</item>
+        <item>Dobridomov</item>
         <item>Eudoxia</item>
+        <item>Félicité</item>
+        <item> Fusang</item>
         <item>Farhome</item>
         <item>Galbraith</item>
         <item>Gedara</item>
         <item>Gethen</item>
+        <item>Gossner</item>
         <item>Harris</item>
+        <item>Hamshalim</item>
+        <item>Haza </item>
+        <item>Hope</item>
+        <item>Hongdae</item>
         <item>Kronos</item>
         <item>Kunlun </item>
+        <item>Konjin</item>
+        <item>Larson</item>
+        <item>Longdune</item>
         <item>Magpie</item>
+        <item>Marais</item>
         <item>New Cyprus</item>
+        <item>Navnan Ghar</item>
+        <item>New Greece</item>
+        <item>New Kashmir </item>
+        <item>New Spain</item>
+        <item>Newbaker</item>
         <item>New Egypt</item>
         <item>New Mars</item>
         <item>New Roma</item>
+        <item>Quivira</item>
         <item>Parker</item>
+        <item>Paradíso</item>
+        <item>Paris</item>
+        <item>Pátria</item>
+        <item>Sanaang</item>
+        <item>Sanctuary </item>
+        <item>Saraswati</item>
+        <item>Summer</item>
         <item>Thanjavur</item>
+        <item>Tabalta</item>
+        <item>Tasnim</item>
+        <item>Torfaen</item>
+        <item>Walton</item>
+        <item>Yasamal</item>
+
 
         <!-- Add more items as needed -->
     </string-array>

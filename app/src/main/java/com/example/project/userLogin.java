@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -25,14 +26,17 @@ public class userLogin extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passwordEditText;
     private TextView alreadySignup;
+    private String SHARED_PREFS="sharedPrefs";
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-
+checkbox();
+        
         firebaseAuth = FirebaseAuth.getInstance();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -64,6 +68,15 @@ public class userLogin extends AppCompatActivity {
         });
     }
 
+    private void checkbox() {
+
+        SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        String check=sharedPreferences.getString("name","");
+        if(check.equals("true")){
+            //after login first screen kya ho
+        }
+    }
+
     private void loginUser() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
@@ -73,6 +86,12 @@ public class userLogin extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+
+                            editor.putString("name","true");
+                            editor.apply();
                             // Sign-in successful
                             Toast.makeText(getApplicationContext(), "Sign-in successful", Toast.LENGTH_SHORT).show();
                             // You can navigate to another activity upon successful sign-in if needed.
