@@ -13,16 +13,19 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
-            android:name=".orgainizationSignIn"
+            android:name=".LocationOwner.userDashboard"
             android:exported="false" />
         <activity
-            android:name=".organizationSignup"
+            android:name=".organization.orgainizationSignIn"
             android:exported="false" />
         <activity
-            android:name=".userLogin"
+            android:name=".organization.organizationSignup"
             android:exported="false" />
         <activity
-            android:name=".userSignup"
+            android:name=".user.userLogin"
+            android:exported="false" />
+        <activity
+            android:name=".user.userSignup"
             android:exported="false" />
         <activity
             android:name=".splash"

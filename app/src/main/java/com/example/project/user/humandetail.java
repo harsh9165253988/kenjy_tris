@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.user;
 
 import java.net.PortUnreachableException;
 

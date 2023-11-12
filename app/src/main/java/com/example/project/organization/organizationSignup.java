@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.organization;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.project.R;
+import com.example.project.organization.orgainizationSignIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

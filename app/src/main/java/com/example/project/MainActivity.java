@@ -8,8 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.project.organization.organizationSignup;
+import com.example.project.user.userSignup;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         universeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,organizationSignup.class);
+                Intent intent=new Intent(MainActivity.this, organizationSignup.class);
                 startActivity(intent);
             }
         });
