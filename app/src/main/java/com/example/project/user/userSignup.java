@@ -42,15 +42,15 @@ public class userSignup extends AppCompatActivity {
     private  RadioButton F;
     private TextView alreadySignin;
 
-   // private  TextView skill;
+    // private  TextView skill;
     private EditText emailEditText;
     private EditText passwordEditText;
-private  EditText fullname;
+    private  EditText fullname;
     private  EditText number;
     private  EditText age;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth firebaseAuth;
-   private  TextView jobSelectonMenu;
+    private  TextView jobSelectonMenu;
     boolean [] selectjob;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
@@ -71,7 +71,7 @@ private  EditText fullname;
         fullname = findViewById(R.id.editTextName);
         emailEditText = findViewById(R.id.editTextEmail);
         number = findViewById(R.id.editTextMobile);
-       // skill= findViewById(R.id.jobSelection);
+        // skill= findViewById(R.id.jobSelection);
         age = findViewById(R.id.editTextAge);
         passwordEditText = findViewById(R.id.editPassword);
         M=findViewById(R.id.radioMale);
@@ -164,7 +164,7 @@ private  EditText fullname;
 
 
                 }
-                }
+            }
 
 
 
