@@ -1,4 +1,4 @@
-package com.example.project.LocationOwner;
+package com.example.project.organization;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
-
-import com.example.project.organization.organizationDetail;
+import com.example.project.LocationOwner.userAdapter;
 import com.example.project.userDataModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,18 +22,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class userDashboardFragment extends Fragment {
+public class orgDashboardFragment extends Fragment {
     private RecyclerView recyclerView;
-    private organizationAdapter adapter;
-    private List<organizationDetail> dataList;
+    private userAdapter adapter;
+    private List<userDataModel> dataList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_dashboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_org_dashboard, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
         dataList = new ArrayList<>();
-        adapter = new organizationAdapter(dataList);
+        adapter = new userAdapter(dataList);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -51,14 +50,14 @@ public class userDashboardFragment extends Fragment {
         // Update dataList with the fetched data
         // Notify the adapter about the data change
         // Example: Use Firebase Realtime Database
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("/organization");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("/human");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataList.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    organizationDetail data = snapshot.getValue(organizationDetail.class);
+                    userDataModel data = snapshot.getValue(userDataModel.class);
                     dataList.add(data);
                 }
 
