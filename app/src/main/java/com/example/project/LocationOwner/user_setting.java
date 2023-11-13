@@ -1,11 +1,10 @@
-
-
 package com.example.project.LocationOwner;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.project.R;
 import com.example.project.user.userLogin;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,14 +31,10 @@ public class user_setting extends AppCompatActivity {
                 // Redirect to the login activity
                 Intent intent = new Intent(user_setting.this, userLogin.class);
                 startActivity(intent);
-                finish(); // Close the current activity to prevent the user from coming back with the back button
+
+                // Finish the current activity to remove it from the stack
+                finish();
             }
         });
     }
 }
-
-
-
-
-
-
