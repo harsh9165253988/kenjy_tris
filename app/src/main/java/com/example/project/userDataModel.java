@@ -1,6 +1,7 @@
 package com.example.project;
 
 public class userDataModel {
+    private String userId;
     private String name;
     private String age;
     private String gender;
@@ -15,7 +16,8 @@ public class userDataModel {
         // Default constructor required for Firebase
     }
 
-    public userDataModel(String age, String email,String gender,String mob,String name,String skl) {
+    public userDataModel(String userId,String age, String email,String gender,String mob,String name,String skl) {
+        this.userId=userId;
         this.age = age;
         this.email = email;
         this.gender = gender;
@@ -27,6 +29,9 @@ public class userDataModel {
         this.skl = skl;
 
 
+    }
+    public String getUserId() {
+        return userId;
     }
     public String getName() {
         return name;

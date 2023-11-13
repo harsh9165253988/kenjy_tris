@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.project.R;
@@ -20,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+// ... (your imports and other code)
 
 public class userProfileFragment extends Fragment {
 
@@ -35,8 +36,6 @@ public class userProfileFragment extends Fragment {
     private DatabaseReference databaseReference;
 
     @Override
-
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
@@ -52,51 +51,45 @@ public class userProfileFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
+        // Initialize DatabaseReference
+        databaseReference = FirebaseDatabase.getInstance().getReference(); // You might need to adjust the path
+
         if (currentUser != null) {
-            String userName = currentUser.getDisplayName();
+            String userId = currentUser.getUid(); // Get the current user's ID
 
-            if (userName != null) {
-                Log.d("UserProfileFragment", "userName: " + userName);
+            Log.d("UserProfileFragment", "userID: " + userId);
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("human");
+            // Rest of your code remains the same, just replace the hard-coded user ID with the dynamic one
+            Query query = databaseReference.child("human").child(userId);
 
-                // Read data from Firebase
-                if (databaseReference != null) {
-                    Query query = databaseReference.orderByChild("name").equalTo(userName);
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        Log.d("UserProfileFragment", "DataSnapshot: " + dataSnapshot.getValue());
 
-                    query.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                Log.d("UserProfileFragment", "DataSnapshot: " + snapshot.getValue());
-
-                                // Update TextViews with data from Firebase
-                                userDataModel user = snapshot.getValue(userDataModel.class);
-                                if (user != null) {
-                                    nameTextView.setText(user.getName());
-                                    emailTextView.setText(user.getEmail());
-                                    ageTextView.setText(String.valueOf(user.getAge()));
-                                    genderTextView.setText(user.getGender());
-                                    numberTextView.setText(user.getMob());
-                                    skillTextView.setText(user.getSkl());
-                                }
-                            }
+                        // Update TextViews with data from Firebase
+                        userDataModel user = dataSnapshot.getValue(userDataModel.class);
+                        if (user != null) {
+                            nameTextView.setText(user.getName());
+                            emailTextView.setText(user.getEmail());
+                            ageTextView.setText(user.getAge());
+                            genderTextView.setText(user.getGender());
+                            numberTextView.setText(user.getMob());
+                            skillTextView.setText(user.getSkl());
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("UserProfileFragment", "DatabaseError: " + databaseError.getMessage());
-                            // Handle errors
-                        }
-                    });
-                } else {
-                    Log.e("UserProfileFragment", "DatabaseReference is null");
-                    // Handle the case where databaseReference is null
+                    } else {
+                        Log.e("UserProfileFragment", "User with ID " + userId + " does not exist");
+                        // Handle the case where the user does not exist
+                    }
                 }
-            } else {
-                Log.e("UserProfileFragment", "userName is null");
-                // Handle the case where userName is null
-            }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("UserProfileFragment", "DatabaseError: " + databaseError.getMessage());
+                    // Handle errors
+                }
+            });
         } else {
             Log.e("UserProfileFragment", "currentUser is null");
             // Handle the case where currentUser is null

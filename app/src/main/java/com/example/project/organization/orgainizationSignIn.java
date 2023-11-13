@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.project.LocationOwner.organizationDashboard;
+import com.example.project.LocationOwner.userDashboard;
 import com.example.project.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,6 +68,9 @@ public class orgainizationSignIn extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
                         Toast.makeText(getApplicationContext(), "Sign in successful!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), organizationDashboard.class);
+                        startActivity(intent);
+                        finish(); // Close the current activity
                         // You can add additional logic here, such as navigating to the main activity
                     } else {
                         // If sign in fails, display a message to the user.

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".LocationOwner.userDashboard"
+    tools:context=".LocationOwner.organizationDashboard"
     android:id="@+id/fragment_container">
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
