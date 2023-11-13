@@ -47,7 +47,11 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
     implementation ("com.ismaeldivita.chipnavigation:chip-navigation-bar:1.3.4")
+    implementation ("com.google.firebase:firebase-database:20.3.0")
 
-
+    implementation ("com.google.firebase:firebase-storage:20.3.0")
+    implementation ("com.google.firebase:firebase-bom:32.5.0")
+    implementation ("com.google.firebase:firebase-storage")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
 }
