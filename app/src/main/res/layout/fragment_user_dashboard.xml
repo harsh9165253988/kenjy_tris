@@ -22,15 +22,12 @@ tools:context=".MainActivity">
     android:background="@drawable/round_corner"/>
 <androidx.recyclerview.widget.RecyclerView
     android:layout_marginTop="10dp"
-    android:layout_below="@id/search"
     android:layout_marginBottom="60dp"
+    android:layout_below="@id/search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/recyclerView"
-    android:scrollbars="vertical"
-    />
-
-
+    android:scrollbars="vertical"/>
 
 
 </RelativeLayout>
