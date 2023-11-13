@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".LocationOwner.user_setting"
+            android:exported="false" />
+        <activity
+            android:name=".LocationOwner.editprofile"
+            android:exported="false" />
+        <activity
             android:name=".LocationOwner.userDashboard"
             android:exported="false" />
         <activity
