@@ -1,3 +1,5 @@
+
+
 package com.example.project.LocationOwner;
 
 import android.os.Bundle;
@@ -17,5 +19,9 @@ public class userDashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_dashboard, container, false);
+
     }
 }
+
+
+

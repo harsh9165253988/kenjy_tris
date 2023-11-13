@@ -1,3 +1,4 @@
+
 package com.example.project.user;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class userLogin extends AppCompatActivity {
 
@@ -78,9 +84,10 @@ public class userLogin extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign-in successful
                             Toast.makeText(getApplicationContext(), "Sign-in successful", Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(getApplicationContext(), userDashboard.class);
+
+                            Intent intent = new Intent(getApplicationContext(), userDashboard.class);
                             startActivity(intent);
-                            // You can navigate to another activity upon successful sign-in if needed.
+                            finish(); // Close the current activity
                         } else {
                             // Sign-in failed
                             Toast.makeText(getApplicationContext(), "Sign-in failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -89,3 +96,4 @@ public class userLogin extends AppCompatActivity {
                 });
     }
 }
+
