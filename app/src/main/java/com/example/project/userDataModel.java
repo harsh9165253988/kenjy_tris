@@ -4,8 +4,8 @@ public class userDataModel {
     private String name;
     private String age;
     private String gender;
-    private String mobile;
-    private String skills;
+    private String mob;
+    private String skl;
     private String email;
 
 
@@ -15,16 +15,16 @@ public class userDataModel {
         // Default constructor required for Firebase
     }
 
-    public userDataModel(String age, String email,String gender,String mobile,String name,String skills) {
+    public userDataModel(String age, String email,String gender,String mob,String name,String skl) {
         this.age = age;
         this.email = email;
         this.gender = gender;
-        this.mobile = mobile;
+        this.mob = mob;
         this.name = name;
 
    ;
 
-        this.skills = skills;
+        this.skl = skl;
 
 
     }
@@ -38,11 +38,11 @@ public class userDataModel {
     public String getGender() {
         return gender;
     }
-    public String getMobile() {
-        return mobile;
+    public String getMob() {
+        return mob;
     }
-    public String getSkills() {
-        return skills;
+    public String getSkl() {
+        return skl;
     }
     public String getEmail() {
         return email;

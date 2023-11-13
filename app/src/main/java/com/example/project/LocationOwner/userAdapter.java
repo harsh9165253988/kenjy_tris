@@ -42,7 +42,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
         userDataModel currentItem = dataList.get(position);
 
         holder.recTitle.setText(currentItem.getName());
-        holder.recPriority.setText(currentItem.getSkills());
+        holder.recPriority.setText(currentItem.getSkl());
     }
 
     @Override

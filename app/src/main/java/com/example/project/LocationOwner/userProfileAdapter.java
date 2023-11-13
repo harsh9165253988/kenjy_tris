@@ -39,8 +39,8 @@ public class userProfileAdapter extends RecyclerView.Adapter<userProfileAdapter.
         holder.emailTextView.setText(user.getEmail());
         holder.ageTextView.setText(user.getAge());
         holder.genderTextView.setText(user.getGender());
-        holder.phoneNumberTextView.setText(user.getMobile());
-        holder.skillsTextView.setText(user.getSkills());
+        holder.phoneNumberTextView.setText(user.getMob());
+        holder.skillsTextView.setText(user.getSkl());
 
         // Add bindings for other attributes as needed
     }

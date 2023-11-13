@@ -77,8 +77,8 @@ public class userProfileFragment extends Fragment {
                                     emailTextView.setText(user.getEmail());
                                     ageTextView.setText(String.valueOf(user.getAge()));
                                     genderTextView.setText(user.getGender());
-                                    numberTextView.setText(user.getMobile());
-                                    skillTextView.setText(user.getSkills());
+                                    numberTextView.setText(user.getMob());
+                                    skillTextView.setText(user.getSkl());
                                 }
                             }
                         }
