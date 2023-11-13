@@ -20,28 +20,53 @@ import com.example.project.R;
 import com.example.project.organization.orgainizationSignIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class organizationSignup extends AppCompatActivity {
     private AwesomeValidation awesomeValidation;
     private Button signUp;
     private TextView signIn;
+    private TextView unam;
+    private TextView mail;
+    private TextView mobnu;
+    private TextView misn;
+    private TextView paswd;
+   private Spinner lc;
     private FirebaseAuth mAuth;
+    FirebaseDatabase rootnode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organization_signup);
 
+        mAuth =FirebaseAuth.getInstance();
+
         signUp = findViewById(R.id.buttonSign);
         signIn = findViewById(R.id.already_signin);
+        unam=findViewById(R.id.editTextName);
+        mail=findViewById(R.id.editTextEmail);
+        mobnu=findViewById(R.id.editTextMobile);
+        misn=findViewById(R.id.mission);
+        paswd=findViewById(R.id.editPassword);
+        lc= findViewById(R.id.spinneJoblist);
         mAuth = FirebaseAuth.getInstance();
-
         Spinner spinnerJob = findViewById(R.id.spinneJoblist);
+
+
+
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.locations,
                 android.R.layout.simple_spinner_item
         );
+
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        lc.setAdapter(adapter);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -59,6 +84,25 @@ public class organizationSignup extends AppCompatActivity {
                 if (awesomeValidation.validate()) {
                     // If validations pass, attempt to sign up the user
                     signUpUser();
+
+                    rootnode=FirebaseDatabase.getInstance();
+                    reference=rootnode.getReference("organization");
+
+
+                   String OrgName,Mail,Contact,Mission,Password,Location;
+                    OrgName = unam.getEditableText().toString();
+                    Mail = mail.getEditableText().toString();
+                    Contact=mobnu.getText().toString();
+                    Mission=misn .getEditableText().toString();
+                    Password = paswd.getEditableText().toString();
+                    Location=lc.getSelectedItem().toString();
+
+
+
+
+                    organizationdetail od=new organizationdetail(OrgName,Mail,Contact,Mission,Password,Location);
+                    reference.child(OrgName).setValue(od);
+
                 }
             }
         });
@@ -70,8 +114,6 @@ public class organizationSignup extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        // Set the layout resource for each spinner item
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Set the adapter to the spinner
@@ -99,6 +141,8 @@ public class organizationSignup extends AppCompatActivity {
         // Set the hint as the default selection
         spinnerJob.setSelection(0, false);
     }
+
+
 
     private void signUpUser() {
         String email = ((TextView) findViewById(R.id.editTextEmail)).getText().toString().trim();
