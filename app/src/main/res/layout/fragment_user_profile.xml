@@ -59,6 +59,7 @@
                         android:layout_height="340dp"
                         android:background="@drawable/top_back"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -77,7 +78,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -90,7 +91,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="55dp"
@@ -117,7 +118,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-                        app:layout_constraintTop_toBottomOf="@+id/textView1"
+                        app:layout_constraintTop_toBottomOf="@+id/email"
                         app:layout_constraintVertical_bias="0.53">
 
 
@@ -265,7 +266,7 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:id="@+id/textView3"
+                                android:id="@+id/age"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -298,7 +299,7 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:id="@+id/textView0"
+                                android:id="@+id/gender"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -331,7 +332,7 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:id="@+id/textView22"
+                                android:id="@+id/number"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -365,7 +366,7 @@
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:id="@+id/textView8"
+                                android:id="@+id/skill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
