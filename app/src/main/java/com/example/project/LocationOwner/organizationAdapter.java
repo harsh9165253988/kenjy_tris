@@ -12,12 +12,18 @@ import com.example.project.R;
 import com.example.project.organization.organizationDetail;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 public class organizationAdapter extends RecyclerView.Adapter<organizationAdapter.ViewHolder> {
     private List<organizationDetail> data;
 
     public organizationAdapter(List<organizationDetail> dataList) {
         this.data = dataList;
+    }
+
+    public Optional getFilter() {
+        return null;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

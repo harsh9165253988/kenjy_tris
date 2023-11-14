@@ -95,6 +95,7 @@ public class userProfileFragment extends Fragment {
             }
         });
 
+
         galleryImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +180,7 @@ public class userProfileFragment extends Fragment {
                 });
     }
 
+
     private void updateProfileImage(String imageUrl) {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         DatabaseReference userReference = databaseReference.child(currentUser.getUid());
@@ -186,4 +188,5 @@ public class userProfileFragment extends Fragment {
                 .addOnSuccessListener(aVoid -> Log.d("UserProfileFragment", "Image URL updated successfully in the database"))
                 .addOnFailureListener(e -> Log.e("UserProfileFragment", "Failed to update image URL in the database: " + e.getMessage()));
     }
+
 }
