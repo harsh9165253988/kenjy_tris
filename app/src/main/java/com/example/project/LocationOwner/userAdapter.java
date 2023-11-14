@@ -16,6 +16,7 @@ import com.example.project.userDataModel;
 import java.util.List;
 
 public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
+
     private List<userDataModel> dataList;
 
     public userAdapter(List<userDataModel> dataList) {
@@ -32,6 +33,11 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
             recPriority = itemView.findViewById(R.id.recPriority);
             profilephoto = itemView.findViewById(R.id.profImage);
         }
+    }
+
+    public void filterList(List<userDataModel> filteredList) {
+        dataList = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull

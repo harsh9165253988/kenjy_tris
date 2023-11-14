@@ -12,8 +12,6 @@ import com.example.project.R;
 import com.example.project.organization.organizationDetail;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 
 public class organizationAdapter extends RecyclerView.Adapter<organizationAdapter.ViewHolder> {
     private List<organizationDetail> data;
@@ -22,8 +20,9 @@ public class organizationAdapter extends RecyclerView.Adapter<organizationAdapte
         this.data = dataList;
     }
 
-    public Optional getFilter() {
-        return null;
+    public void filterList(List<organizationDetail> filteredList) {
+        data = filteredList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,5 +1,7 @@
 package com.example.project.LocationOwner;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +32,7 @@ public class user_setting extends AppCompatActivity {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Sign out the user from Firebase
+
                 firebaseAuth.signOut();
                 builder.setTitle("Alert").setMessage("Do You Want To LogOut This Application").setCancelable(true)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -39,7 +41,7 @@ public class user_setting extends AppCompatActivity {
                                 // Finish the current activity to remove it from the stack
                                 finish();
 
-                                // Redirect to the login activity
+
                                 Intent intent = new Intent(user_setting.this, userLogin.class);
                                 startActivity(intent);
                             }
@@ -54,6 +56,9 @@ public class user_setting extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
 
 
