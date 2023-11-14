@@ -9,10 +9,9 @@ public class userDataModel {
     private String email;
   private String profileImageUrl;
 
-    // Add getters and setters
-
+  
     public userDataModel() {
-        // Default constructor required for Firebase
+       
     }
 
     public userDataModel(String age, String email,String gender,String mob,String name,String skl,String profileImageUrl) {
