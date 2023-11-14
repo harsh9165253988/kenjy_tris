@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
 
+        app:lottie_rawRes="@raw/background" />
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -43,21 +53,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="380dp"
 
+
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/background" />
+
 
                         <ImageView
                             android:id="@+id/imageView16"
@@ -78,12 +80,14 @@
                         android:layout_height="111dp"
                         android:layout_marginTop="36dp"
                         android:layout_marginBottom="16dp"
-                        android:src="@drawable/img_3"
+                        android:src="@drawable/profileimg"
                         android:backgroundTint="@color/grey"
                         app:layout_constraintBottom_toTopOf="@+id/name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+
+                      />
 
                     <TextView
                         android:id="@+id/name"
@@ -156,10 +160,10 @@
 
                                     <ImageView
                                         android:id="@+id/imageView1"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
                                         android:layout_margin="12dp"
-                                        android:background="@drawable/circle_back"
+
                                         android:src="@drawable/img_4"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
@@ -196,10 +200,10 @@
 
                                     <ImageView
                                         android:id="@+id/imageView3"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
                                         android:layout_margin="12dp"
-                                        android:background="@drawable/circle_back"
+
                                         android:src="@drawable/img_5"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
@@ -236,10 +240,10 @@
 
                                     <ImageView
                                         android:id="@+id/imageView12"
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
+                                        android:layout_width="55dp"
+                                        android:layout_height="55dp"
                                         android:layout_margin="12dp"
-                                        android:background="@drawable/circle_back"
+
                                         android:src="@drawable/img_6"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"

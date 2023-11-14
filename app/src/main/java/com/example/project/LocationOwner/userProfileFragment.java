@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.project.R;
 import com.example.project.userDataModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,8 +49,17 @@ public class userProfileFragment extends Fragment {
 
     private final int GALLERY_REQ_CODE = 1000;
     private void updateImageView(String imageUrl) {
-        Glide.with(this).load(imageUrl).into(galleryImageView);
+        if (isAdded() && imageUrl != null && !imageUrl.isEmpty()) {
+            // Load the image with Glide and apply a circular transformation
+            Glide.with(this)
+                    .load(imageUrl)
+                    .transform(new CircleCrop())
+                    .into(galleryImageView);
+        }
     }
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
