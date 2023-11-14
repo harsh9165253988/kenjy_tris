@@ -2,21 +2,19 @@ package com.example.project.organization;
 
 public class organizationDetail {
 
-    String OrgName,Mail,Contact,Mission,Password,Location;
-    public organizationDetail(String OrgName,String Mail,String Contact,String Mission,String Password,String Location)
-    {
-        this.OrgName=OrgName;
-        this.Mail=Mail;
-        this.Contact=Contact;
-        this.Mission=Mission;
-        this.Password=Password;
-        this.Location=Location;
+    String OrgName, Mail, Contact, Mission, Password, Location;
 
+    public organizationDetail(String OrgName, String Mail, String Contact, String Mission, String Password, String Location) {
+        this.OrgName = OrgName;
+        this.Mail = Mail;
+        this.Contact = Contact;
+        this.Mission = Mission;
+        this.Password = Password;
+        this.Location = Location;
     }
 
-    public organizationDetail()
-    {
-
+    public organizationDetail() {
+        // Default constructor required for Firebase
     }
 
     public String getOrgName() {

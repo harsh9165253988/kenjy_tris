@@ -41,12 +41,12 @@ public class userProfileFragment extends Fragment {
     private TextView numberTextView;
     private TextView skillTextView;
     private ImageView galleryImageView;
-    private ImageView back_button,settinga;
+    private ImageView settinga;
+    private ImageView back_button;
 
     // Firebase
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-
     private final int GALLERY_REQ_CODE = 1000;
     private void updateImageView(String imageUrl) {
         if (isAdded() && imageUrl != null && !imageUrl.isEmpty()) {
@@ -57,32 +57,39 @@ public class userProfileFragment extends Fragment {
                     .into(galleryImageView);
         }
     }
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
         // Initialize TextViews and ImageView
         galleryImageView = view.findViewById(R.id.imageView4);
+        back_button = view.findViewById(R.id.imageView16);
         nameTextView = view.findViewById(R.id.name);
         emailTextView = view.findViewById(R.id.email);
         ageTextView = view.findViewById(R.id.age);
         genderTextView = view.findViewById(R.id.gender);
         numberTextView = view.findViewById(R.id.number);
         skillTextView = view.findViewById(R.id.skill);
-       // back_button=view.findViewById(R.id.back_button);
-        settinga=view.findViewById(R.id.imageView3);
-        // Initialize Firebase components
+        settinga = view.findViewById(R.id.imageView3);
+
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        databaseReference=FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Instead of handling back press here, let the hosting activity handle it
+                getActivity().onBackPressed();
+            }
+        });
+
         settinga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), user_setting.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -103,43 +110,40 @@ public class userProfileFragment extends Fragment {
             if (userId != null) {
                 Log.d("UserProfileFragment", "userName: " + userId);
 
-
-                // Read data from Firebase
-
                 Query query = databaseReference.child("human").child(userId);
 
-                query.addValueEventListener(new ValueEventListener() {
+                    query.addValueEventListener(new ValueEventListener() {
 
 
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            Log.d("UserProfileFragment", "DataSnapshot: " + dataSnapshot.getValue());
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Log.d("UserProfileFragment", "DataSnapshot: " + dataSnapshot.getValue());
 
-                            // Update TextViews with data from Firebase
-                            userDataModel user = dataSnapshot.getValue(userDataModel.class);
-                            if (user != null) {
-                                nameTextView.setText(user.getName());
-                                emailTextView.setText(user.getEmail());
-                                ageTextView.setText(user.getAge());
-                                genderTextView.setText(user.getGender());
-                                numberTextView.setText(user.getMob());
-                                skillTextView.setText(user.getSkl());
-                                updateImageView(user.getProfileImageUrl());
+                                // Update TextViews with data from Firebase
+                                userDataModel user = dataSnapshot.getValue(userDataModel.class);
+                                if (user != null) {
+                                    nameTextView.setText(user.getName());
+                                    emailTextView.setText(user.getEmail());
+                                    ageTextView.setText(user.getAge());
+                                    genderTextView.setText(user.getGender());
+                                    numberTextView.setText(user.getMob());
+                                    skillTextView.setText(user.getSkl());
+                                    updateImageView(user.getProfileImageUrl());
+                                }
+                            } else {
+                                Log.e("UserProfileFragment", "User with ID " + userId + " does not exist");
+                                // Handle the case where the user does not exist
                             }
-                        } else {
-                            Log.e("UserProfileFragment", "User with ID " + userId + " does not exist");
-                            // Handle the case where the user does not exist
                         }
-                    }
 
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.e("UserProfileFragment", "DatabaseError: " + databaseError.getMessage());
-                        // Handle errors
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Log.e("UserProfileFragment", "DatabaseError: " + databaseError.getMessage());
+                            // Handle errors
+                        }
+                    });
 
             } else {
                 Log.e("UserProfileFragment", "userName is null");
@@ -192,7 +196,6 @@ public class userProfileFragment extends Fragment {
                     Log.e("UserProfileFragment", "Image upload failed: " + e.getMessage());
                 });
     }
-
 
     private void updateProfileImage(String imageUrl) {
         // Now, you can update the user's profile image URL in the database
