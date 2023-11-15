@@ -20,6 +20,11 @@ public class organizationAdapter extends RecyclerView.Adapter<organizationAdapte
         this.data = dataList;
     }
 
+    public void filterList(List<organizationDetail> filteredList) {
+        data = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView orgName, orgLocation;
 

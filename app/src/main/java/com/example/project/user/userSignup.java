@@ -240,7 +240,14 @@ public class userSignup extends AppCompatActivity {
 
                             }
 
+                                    Intent i=new Intent(userSignup.this, userLogin.class);
+                                    startActivity(i);
+                                    finish();
+
+
                             Toast.makeText(userSignup.this, "Signup successful", Toast.LENGTH_LONG).show();
+
+
                         } else {
 
                             Toast.makeText(userSignup.this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();

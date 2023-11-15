@@ -8,7 +8,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project.organization.orgainizationSignIn;
 import com.example.project.organization.organizationSignup;
+import com.example.project.user.userLogin;
 import com.example.project.user.userSignup;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         universeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, organizationSignup.class);
+                Intent intent=new Intent(MainActivity.this, orgainizationSignIn.class);
                 startActivity(intent);
             }
         });
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start the NextActivity when the button is clicked
-                Intent intent = new Intent(MainActivity.this, userSignup.class);
+                Intent intent = new Intent(MainActivity.this, userLogin.class);
                 startActivity(intent);
             }
         });
