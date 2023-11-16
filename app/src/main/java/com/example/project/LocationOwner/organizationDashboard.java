@@ -1,4 +1,4 @@
-package com.example.project.LocationOwner;
+package com.example.project.organization;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

@@ -65,4 +65,3 @@ public class user_setting extends AppCompatActivity {
 
 
 
-}
