@@ -2,23 +2,23 @@ package com.example.project.organization;
 
 public class OrgDataModel {
 
-    private String name;
+    private String orgName;
     private String location;
-    private String mob;
+    private String contact;
     private String mission;
-    private String email;
+    private String mail;
     private String profileImageUrl;
 
     public OrgDataModel() {
         // Default constructor required for Firebase
     }
 
-    public OrgDataModel(String location, String email,String mission,String mob,String name,String profileImageUrl) {
+    public OrgDataModel(String location, String mail,String mission,String contact,String orgName,String profileImageUrl) {
         this.location= location;
-        this.email = email;
+        this.mail = mail;
         this.mission = mission;
-        this.mob = mob;
-        this.name = name;
+        this.contact=contact;
+        this.orgName = orgName;
         this.profileImageUrl=profileImageUrl;
 
 
@@ -32,24 +32,24 @@ public class OrgDataModel {
 
 
 
-    public String getName() {
-        return name;
+    public String getorgName() {
+        return orgName;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public String getMob() {
-        return mob;
+    public String getContact() {
+        return contact;
     }
 
     public String getMission() {
         return mission;
     }
 
-    public String getEmail() {
-        return email;
+    public String getmail() {
+        return mail;
     }
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;

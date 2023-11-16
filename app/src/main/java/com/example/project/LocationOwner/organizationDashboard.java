@@ -1,4 +1,4 @@
-package com.example.project.organization;
+package com.example.project.LocationOwner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,6 +17,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class organizationDashboard extends AppCompatActivity {
     ChipNavigationBar chipNavigationBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class organizationDashboard extends AppCompatActivity {
 
 
         chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+
+
             @Override
             public void onItemSelected(int itemId) {
                 Fragment fragment = null;

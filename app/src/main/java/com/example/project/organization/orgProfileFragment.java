@@ -115,11 +115,11 @@ public class orgProfileFragment extends Fragment {
                             // Update TextViews with data from Firebase
                             OrgDataModel user = dataSnapshot.getValue(OrgDataModel.class);
                             if (user != null) {
-                                nameTextView.setText(user.getName());
-                                emailTextView.setText(user.getEmail());
+                                nameTextView.setText(user.getorgName());
+                                emailTextView.setText(user.getmail());
                                 location.setText(user.getLocation());
                                 AboutMissionTextView.setText(user.getMission());
-                                numberTextView.setText(user.getMob());
+                                numberTextView.setText(user.getContact());
                                 updateImageView(user.getProfileImageUrl());
                             }
                         } else {

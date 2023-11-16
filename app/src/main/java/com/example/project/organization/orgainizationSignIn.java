@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.example.project.organization.organizationDashboard;
+import com.example.project.LocationOwner.organizationDashboard;
 import com.example.project.LocationOwner.userDashboard;
 import com.example.project.R;
 import com.google.firebase.auth.FirebaseAuth;

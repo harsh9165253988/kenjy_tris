@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
+
+        <activity android:name=".organization.organizationDashboard">
+            <!-- Add intent filters if necessary -->
+        </activity>
+
         <activity
             android:name=".OrgnizationInfo"
             android:exported="false" />
