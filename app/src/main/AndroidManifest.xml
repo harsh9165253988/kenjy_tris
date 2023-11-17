@@ -26,6 +26,9 @@
             android:label="@string/title_activity_org_info"
             android:theme="@style/Theme.Project.NoActionBar" />
         <activity
+            android:name=".organization.addVacancyPopup"
+            android:exported="false" />
+        <activity
             android:name=".LocationOwner.organizationDashboard"
             android:exported="false" />
         <activity

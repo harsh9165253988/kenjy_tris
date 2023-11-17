@@ -1,0 +1,63 @@
+ package com.example.project.organization;
+ import android.content.Context;
+ import android.graphics.Color;
+ import android.graphics.drawable.ColorDrawable;
+ import android.view.Gravity;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.Button;
+ import android.widget.EditText;
+ import android.widget.PopupWindow;
+ import com.example.project.user.userSignup;
+
+ import com.example.project.R;
+ import com.google.firebase.auth.FirebaseAuth;
+ import com.google.firebase.auth.FirebaseUser;
+ import com.google.firebase.database.DatabaseReference;
+
+ public class addVacancyPopup {
+
+     public interface OnVacancyCreatedListener {
+         void onVacancyCreated(Vacancy vacancy);
+     }
+
+     public static void showPopupWindow(Context context, View anchorView, DatabaseReference databaseReference, OnVacancyCreatedListener listener) {
+         View popupView = LayoutInflater.from(context).inflate(R.layout.activity_add_vacancy_popup, null);
+
+         EditText editTextLocation = popupView.findViewById(R.id.editTextLocation);
+         EditText editTextDateTime = popupView.findViewById(R.id.editTextDateTime);
+         EditText editTextPreferredSkills = popupView.findViewById(R.id.editTextPreferredSkills);
+         Button buttonCreateVacancy = popupView.findViewById(R.id.buttonCreateVacancy);
+
+         PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // Set background to transparent
+         popupWindow.setOutsideTouchable(true);
+         popupWindow.showAtLocation(anchorView, Gravity.CENTER, 0, 0);
+
+         buttonCreateVacancy.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                 String uid = user.getUid();
+                 String location = editTextLocation.getText().toString();
+                 String dateTime = editTextDateTime.getText().toString();
+                 String preferredSkills = editTextPreferredSkills.getText().toString();
+
+                 // Validate input if needed
+
+                 // Notify the listener about the created vacancy
+                 if (listener != null) {
+
+                     Vacancy vacancy = new Vacancy(location, dateTime, preferredSkills);
+                     databaseReference.child(uid).child("vacancy").push().setValue(vacancy);
+                     listener.onVacancyCreated(vacancy);
+
+                 }
+
+                 // Dismiss the popup window
+                 popupWindow.dismiss();
+             }
+         });
+     }
+ }
