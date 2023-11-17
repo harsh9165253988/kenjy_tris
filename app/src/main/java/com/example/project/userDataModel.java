@@ -57,4 +57,7 @@ public class userDataModel {
     public String getEmail() {
         return email;
     }
+    public void setSkl(String skl) {
+        this.skl = skl;
+    }
 }

@@ -4,16 +4,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.project.R;
-
 import java.util.List;
 
 public class vacancyAdapter extends RecyclerView.Adapter<vacancyAdapter.ViewHolder> {
     private List<Vacancy> vacancyList;
+
+    public void setVacancies(List<Vacancy> vacancies) {
+        this.vacancyList = vacancies;
+        notifyDataSetChanged();
+    }
 
     public vacancyAdapter(List<Vacancy> vacancyList) {
         this.vacancyList = vacancyList;
