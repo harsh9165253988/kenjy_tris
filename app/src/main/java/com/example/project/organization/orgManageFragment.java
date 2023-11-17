@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 
 import com.example.project.R;
 
@@ -59,6 +61,8 @@ public class orgManageFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         databaseReference = FirebaseDatabase.getInstance().getReference("organization");
+        ArrayList<Integer> jobList =new ArrayList<>();
+        String[] jobarray = getResources().getStringArray(R.array.job_options);
 
 
 
@@ -124,7 +128,23 @@ public class orgManageFragment extends Fragment {
             }
         });
 
+        // Inflate the custom layout for the spinner
+        View spinnerLayout = LayoutInflater.from(requireContext()).inflate(R.layout.activity_add_vacancy_popup, null);
+
+        // Find the Spinner in the custom layout
+        Spinner spinnerLocation = spinnerLayout.findViewById(R.id.spinnerlocation);
+
+        // Populate the spinner with your data
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(), R.array.locations, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerLocation.setAdapter(adapter);
+
+        // Add the custom layout to the PopupMenu
+        popupMenu.setForceShowIcon(true);
         popupMenu.show();
+        popupMenu.getMenu().getItem(0).setActionView(spinnerLayout);
+
+        return;
     }
 
 }

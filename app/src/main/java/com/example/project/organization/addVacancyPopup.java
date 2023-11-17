@@ -1,3 +1,21 @@
+// addVacancyPopup class
+
+package com.example.project.organization;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.Spinner;
+import android.widget.TextView;
 package com.example.project.organization;
 
 import android.app.Notification;
@@ -33,8 +51,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
+import java.util.List;
+
+// ... (imports)
+
+public class addVacancyPopup {
 public class addVacancyPopup {
 
+    public interface OnVacancyCreatedListener {
+        void onVacancyCreated(Vacancy vacancy);
+    }
     public static final String FCM_TOPIC="vacancy_notification";
     public static final String CHANNEL_ID = "My Channel";
     public static final int NOTIFICATION_ID = 100;
@@ -46,11 +73,24 @@ public class addVacancyPopup {
     public static void showPopupWindow(Context context, View anchorView, DatabaseReference databaseReference, OnVacancyCreatedListener listener) {
         View popupView = LayoutInflater.from(context).inflate(R.layout.activity_add_vacancy_popup, null);
 
+        Spinner spinnerLocation = popupView.findViewById(R.id.spinnerlocation);
+        EditText editTextDateTime = popupView.findViewById(R.id.editTextDateTime);
+        EditText editTextPreferredSkills = popupView.findViewById(R.id.editTextPreferredSkills);
+        Button buttonCreateVacancy = popupView.findViewById(R.id.buttonCreateVacancy);
         EditText editTextLocation = popupView.findViewById(R.id.editTextLocation);
         EditText editTextDateTime = popupView.findViewById(R.id.editTextDateTime);
         EditText editTextPreferredSkills = popupView.findViewById(R.id.editTextPreferredSkills);
         Button buttonCreateVacancy = popupView.findViewById(R.id.buttonCreateVacancy);
 
+        // Populate the spinner with your data
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.locations, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerLocation.setAdapter(adapter);
+
+        PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // Set background to transparent
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.showAtLocation(anchorView, Gravity.CENTER, 0, 0);
         PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // Set background to transparent
         popupWindow.setOutsideTouchable(true);
@@ -62,6 +102,12 @@ public class addVacancyPopup {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = user.getUid();
                 String location = editTextLocation.getText().toString();
+                String dateTime = editTextDateTime.getText().toString();
+                String preferredSkills = editTextPreferredSkills.getText().toString();
+        buttonCreateVacancy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String location = spinnerLocation.getSelectedItem().toString();
                 String dateTime = editTextDateTime.getText().toString();
                 String preferredSkills = editTextPreferredSkills.getText().toString();
 
@@ -124,7 +170,21 @@ public class addVacancyPopup {
 
                     Log.d("Notification", "Creating notification");
                     nm.notify(NOTIFICATION_ID, notification);
+                // Notify the listener about the created vacancy
+                if (listener != null) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = user.getUid();
+                    Vacancy vacancy = new Vacancy(location, dateTime, preferredSkills);
+                    databaseReference.child(uid).child("vacancy").push().setValue(vacancy);
+                    listener.onVacancyCreated(vacancy);
+                }
 
+                // Dismiss the popup window
+                popupWindow.dismiss();
+            }
+        });
+    }
+}
                     // Dismiss the popup window
                     popupWindow.dismiss();
                 }

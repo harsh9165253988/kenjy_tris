@@ -23,35 +23,44 @@
 
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
 android:padding="30dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextLocation"
+        <Spinner
+            android:id="@+id/spinnerlocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location" />
+            android:padding="10dp"
 
+            android:hint="Location" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
         <EditText
             android:id="@+id/editTextDateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:hint="Date and Time" />
 
         <EditText
             android:id="@+id/editTextPreferredSkills"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:hint="Preferred Skills" />
 
         <Button
+            android:layout_marginTop="20dp"
             android:id="@+id/buttonCreateVacancy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create Vacancy" />
+
     </LinearLayout>
 
     </androidx.cardview.widget.CardView>
