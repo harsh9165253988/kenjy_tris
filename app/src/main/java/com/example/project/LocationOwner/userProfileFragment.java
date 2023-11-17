@@ -1,0 +1,189 @@
+package com.example.project.LocationOwner;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.project.R;
+import com.example.project.userDataModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import static android.app.Activity.RESULT_OK;
+
+public class userProfileFragment extends Fragment {
+
+    private TextView nameTextView;
+    private TextView emailTextView;
+    private TextView ageTextView;
+    private TextView genderTextView;
+    private TextView numberTextView;
+    private TextView skillTextView;
+
+    private ImageView galleryImageView;
+    private ImageView settinga;
+    private ImageView back_button;
+
+    // Firebase
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+    private final int GALLERY_REQ_CODE = 1000;
+
+    private void updateImageView(String imageUrl) {
+        if (isAdded() && imageUrl != null && !imageUrl.isEmpty()) {
+            // Load the image with Glide and apply a circular transformation
+            Glide.with(this)
+                    .load(imageUrl)
+                    .transform(new CircleCrop())
+                    .into(galleryImageView);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+
+        galleryImageView = view.findViewById(R.id.imageView4);
+        back_button = view.findViewById(R.id.imageView16);
+        nameTextView = view.findViewById(R.id.name);
+        emailTextView = view.findViewById(R.id.email);
+        ageTextView = view.findViewById(R.id.age);
+        genderTextView = view.findViewById(R.id.gender);
+        numberTextView = view.findViewById(R.id.number);
+        skillTextView = view.findViewById(R.id.skill);
+        settinga = view.findViewById(R.id.imageView3);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Instead of handling back press here, let the hosting activity handle it
+                getActivity().onBackPressed();
+            }
+        });
+
+        settinga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), user_setting.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
+        galleryImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseReference = FirebaseDatabase.getInstance().getReference("human");
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+                galleryIntent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, GALLERY_REQ_CODE);
+            }
+        });
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            if (userId != null) {
+                Log.d("UserProfileFragment", "userName: " + userId);
+
+                Query query = databaseReference.child("human").child(userId);
+
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Log.d("UserProfileFragment", "DataSnapshot: " + dataSnapshot.getValue());
+
+                            userDataModel user = dataSnapshot.getValue(userDataModel.class);
+                            if (user != null) {
+                                nameTextView.setText(user.getName());
+                                emailTextView.setText(user.getEmail());
+                                ageTextView.setText(user.getAge());
+                                genderTextView.setText(user.getGender());
+                                numberTextView.setText(user.getMob());
+                                skillTextView.setText(user.getSkl());
+                                updateImageView(user.getProfileImageUrl());
+                            }
+                        } else {
+                            Log.e("UserProfileFragment", "User with ID " + userId + " does not exist");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("UserProfileFragment", "DatabaseError: " + databaseError.getMessage());
+                    }
+                });
+
+            } else {
+                Log.e("UserProfileFragment", "userName is null");
+            }
+        } else {
+            Log.e("UserProfileFragment", "currentUser is null");
+        }
+
+        return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == GALLERY_REQ_CODE && data != null) {
+                Uri selectedImageUri = data.getData();
+                if (selectedImageUri != null) {
+                    uploadImageToFirebase(selectedImageUri);
+                }
+            }
+        }
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        String imageName = "profile_image_" + System.currentTimeMillis() + ".jpg";
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("profile_images").child(imageName);
+
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String imageUrl = uri.toString();
+                        updateProfileImage(imageUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("UserProfileFragment", "Image upload failed: " + e.getMessage());
+                });
+    }
+
+    private void updateProfileImage(String imageUrl) {
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        DatabaseReference userReference = databaseReference.child(currentUser.getUid());
+        userReference.child("profileImageUrl").setValue(imageUrl)
+                .addOnSuccessListener(aVoid -> Log.d("UserProfileFragment", "Image URL updated successfully in the database"))
+                .addOnFailureListener(e -> Log.e("UserProfileFragment", "Failed to update image URL in the database: " + e.getMessage()));
+    }
+}

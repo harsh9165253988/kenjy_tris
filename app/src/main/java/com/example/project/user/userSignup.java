@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -6,39 +6,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
+import com.example.project.LocationOwner.userProfileFragment;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.custom.SimpleCustomValidation;
+import com.example.project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
+import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public class userSignup extends AppCompatActivity {
 
@@ -46,6 +41,8 @@ public class userSignup extends AppCompatActivity {
     private RadioButton M;
     private  RadioButton F;
     private TextView alreadySignin;
+
+   // private  TextView skill;
     private EditText emailEditText;
     private EditText passwordEditText;
 private  EditText fullname;
@@ -53,6 +50,8 @@ private  EditText fullname;
     private  EditText age;
     private AwesomeValidation awesomeValidation;
     private FirebaseAuth firebaseAuth;
+   private  TextView jobSelectonMenu;
+    boolean [] selectjob;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
     int i=0;
@@ -62,8 +61,7 @@ private  EditText fullname;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-      TextView jobSelectonMenu;
-      boolean [] selectjob;
+
         ArrayList<Integer> jobList =new ArrayList<>();
         String[] jobarray = getResources().getStringArray(R.array.job_options);
         setContentView(R.layout.activity_user_signup);
@@ -73,6 +71,7 @@ private  EditText fullname;
         fullname = findViewById(R.id.editTextName);
         emailEditText = findViewById(R.id.editTextEmail);
         number = findViewById(R.id.editTextMobile);
+       // skill= findViewById(R.id.jobSelection);
         age = findViewById(R.id.editTextAge);
         passwordEditText = findViewById(R.id.editPassword);
         M=findViewById(R.id.radioMale);
@@ -161,32 +160,8 @@ private  EditText fullname;
             public void onClick(View v) {
                 if (awesomeValidation.validate()) {
                     registerUser();
-                    rootnode = FirebaseDatabase.getInstance();
-                    reference =rootnode.getReference("human");
-
-                    String name,email,mob,ag,pd,m,f,gender;
-                    name = fullname.getEditableText().toString();
-                    email = emailEditText.getEditableText().toString();
-                    mob =number .getEditableText().toString();
-                    ag= age.getEditableText().toString();
-                    pd = passwordEditText.getEditableText().toString();
-                    m = M.isChecked() ? "Male" : "";
-                    f = F.isChecked() ? "Female" : "";
-
-                    if (M.isChecked()) {
-                        gender = "Male";
-                    } else if (F.isChecked()) {
-                        gender = "Female";
-                    } else {
-                        // Handle the case where neither radio button is checked
-                        gender = ""; // or set it to a default value
-                    }
 
 
-
-                    humandetail hd=new humandetail(name,email,mob,ag,pd,gender);
-
-                    reference.child(name).setValue(hd);
 
                 }
                 }
@@ -209,14 +184,70 @@ private  EditText fullname;
     private void registerUser() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+        String userName=fullname.getText().toString();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                String uid = user.getUid();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(userName) // Set the display name to the user's input
+                                        .build();
+
+                                user.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d("Profile", "User profile updated.");
+                                                }
+                                            }
+                                        });
+                                rootnode = FirebaseDatabase.getInstance();
+                                reference =rootnode.getReference("human");
+
+                                String name,email,mob,ag,pd,m,f,gender,skl;
+                                name = fullname.getEditableText().toString();
+                                email = emailEditText.getEditableText().toString();
+                                skl =jobSelectonMenu.getText().toString();
+                                mob =number .getEditableText().toString();
+                                ag= age.getEditableText().toString();
+                                pd = passwordEditText.getEditableText().toString();
+                                m = M.isChecked() ? "Male" : "";
+                                f = F.isChecked() ? "Female" : "";
+
+                                if (M.isChecked()) {
+                                    gender = "Male";
+                                } else if (F.isChecked()) {
+                                    gender = "Female";
+                                } else {
+                                    // Handle the case where neither radio button is checked
+                                    gender = ""; // or set it to a default value
+                                }
+
+
+
+                                humandetail hd=new humandetail(name,email,mob,ag,pd,gender,skl);
+
+                                reference.child(uid).setValue(hd);
+
+
+
+                            }
+
+                                    Intent i=new Intent(userSignup.this, userLogin.class);
+                                    startActivity(i);
+                                    finish();
+
 
                             Toast.makeText(userSignup.this, "Signup successful", Toast.LENGTH_LONG).show();
+
+
                         } else {
 
                             Toast.makeText(userSignup.this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();

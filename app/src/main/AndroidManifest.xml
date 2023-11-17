@@ -13,13 +13,28 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
-            android:name=".organizationSignup"
+            android:name=".LocationOwner.organizationDashboard"
             android:exported="false" />
         <activity
-            android:name=".userLogin"
+            android:name=".LocationOwner.user_setting"
             android:exported="false" />
         <activity
-            android:name=".userSignup"
+            android:name=".LocationOwner.editprofile"
+            android:exported="false" />
+        <activity
+            android:name=".LocationOwner.userDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".organization.orgainizationSignIn"
+            android:exported="false" />
+        <activity
+            android:name=".organization.organizationSignup"
+            android:exported="false" />
+        <activity
+            android:name=".user.userLogin"
+            android:exported="false" />
+        <activity
+            android:name=".user.userSignup"
             android:exported="false" />
         <activity
             android:name=".splash"

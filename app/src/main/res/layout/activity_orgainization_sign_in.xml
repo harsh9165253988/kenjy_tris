@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -62,100 +61,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/colorWhite"
+                    android:text="LOGIN"
                     android:textAlignment="center"
-                    android:text="SIGN UP"/>
-
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp" />
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/organization_name">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:ems="10"
-                        android:inputType="text"
-                        android:textColor="#FFFFFF" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/organization_email">
+                    android:layout_marginTop="40dp"
+                    android:hint="@string/form_email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:layout_marginTop="50dp"
                         android:ems="10"
                         android:inputType="textEmailAddress"
                         android:textColor="#FFFFFF" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/organization_contact">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextMobile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:ems="10"
-                        android:inputType="phone"
-                        android:textColor="#FFFFFF" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/joblist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/spinner_border"
-                    android:ems="10"
-                    android:hint="Job List"
-                    app:boxStrokeColor="#877878"
-                    android:textColorHint="#FFFFFF"
-                    app:hintEnabled="true"
-                    app:hintTextColor="#FFFFFF">
-
-                    <Spinner
-                        android:id="@+id/spinneJoblist"
-                        style="@style/SpinnerStyle"
-
-                        android:visibility="visible" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/organization_mission">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mission"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginTop="10dp"
-                        android:ems="10"
-                        android:inputType="text"
-                        android:textColor="#FFFFFF" />
-
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:endIconMode="password_toggle"
-                    android:hint="@string/form_password">
+                    android:hint="@string/form_email"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/form_phone"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/form_password"
+                    app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editPassword"
@@ -167,24 +111,24 @@
                         android:textColor="#FFFFFF" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
+                <!-- Gender Selection -->
 
                 <Button
-                    android:id="@+id/buttonSign"
-                    android:layout_margin="20dp"
+                    android:id="@+id/buttonLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:text="Sign Up" />
+                    android:layout_margin="20dp"
+                    android:text="LOGIN"
+                    android:textColor="@color/colorWhite" />
 
                 <TextView
-                    android:id="@+id/already_signin"
+                    android:id="@+id/new_member"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
-                    android:textColor="@color/colorWhite"
+                    android:text="@string/new_member"
                     android:textAlignment="center"
-                    android:text="@string/already_member"/>
+                    android:textColor="@color/colorWhite" />
 
             </LinearLayout>
         </ScrollView>

@@ -8,10 +8,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.project.organization.orgainizationSignIn;
+import com.example.project.organization.organizationSignup;
+import com.example.project.user.userLogin;
+import com.example.project.user.userSignup;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
         ObjectAnimator scaleAnimator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.universe_scale);
         scaleAnimator.setTarget(universeButton);
         scaleAnimator.start();
+        universeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, orgainizationSignIn.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -32,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         ObjectAnimator rotateAnimator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.planet_rotate);
         rotateAnimator.setTarget(planetButton);
         rotateAnimator.start();
-        Button userSign = findViewById(R.id.planetButton);
-        userSign.setOnClickListener(new View.OnClickListener() {
+        //Button userSign = findViewById(R.id.planetButton);
+        planetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start the NextActivity when the button is clicked
-                Intent intent = new Intent(MainActivity.this, userSignup.class);
+                Intent intent = new Intent(MainActivity.this, userLogin.class);
                 startActivity(intent);
             }
         });
