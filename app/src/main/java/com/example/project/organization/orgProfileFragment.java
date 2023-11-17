@@ -65,7 +65,7 @@ public class orgProfileFragment extends Fragment {
         galleryImageView = view.findViewById(R.id.imageView4);
         back_button = view.findViewById(R.id.imageView16);
         nameTextView = view.findViewById(R.id.name);
-        emailTextView = view.findViewById(R.id.email);
+        emailTextView = view.findViewById(R.id.mail);
       location=view.findViewById(R.id.Location);
         numberTextView = view.findViewById(R.id.number);
         AboutMissionTextView = view.findViewById(R.id.mission);
@@ -77,7 +77,7 @@ public class orgProfileFragment extends Fragment {
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 // Instead of handling back press here, let the hosting activity handle it
                 getActivity().onBackPressed();
             }
@@ -88,7 +88,7 @@ public class orgProfileFragment extends Fragment {
 
         galleryImageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 databaseReference = FirebaseDatabase.getInstance().getReference("organization");
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK);
                 galleryIntent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -123,7 +123,7 @@ public class orgProfileFragment extends Fragment {
                                 updateImageView(user.getProfileImageUrl());
                             }
                         } else {
-                            Log.e("OrgProfileFragment", "Organizaton with ID " + userId + " does not exist");
+                            Log.e("orgProfileFragment", "Organizaton with ID " + userId + " does not exist");
                             // Handle the case where the user does not exist
                         }
                     }
@@ -131,17 +131,17 @@ public class orgProfileFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.e("OrgProfileFragment", "DatabaseError: " + databaseError.getMessage());
+                        Log.e("orgProfileFragment", "DatabaseError: " + databaseError.getMessage());
                         // Handle errors
                     }
                 });
 
             } else {
-                Log.e("OrgProfileFragment", "Orgnization Name is null");
+                Log.e("orgProfileFragment", "userId is null");
                 // Handle the case where userName is null
             }
         } else {
-            Log.e("OrgProfileFragment", "currentOrg is null");
+            Log.e("orgProfileFragment", "currentUser is null");
             // Handle the case where currentUser is null
             // Redirect the user to the login screen, for example
         }
@@ -184,7 +184,7 @@ public class orgProfileFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> {
                     // Handle failure to upload image
-                    Log.e("OrgProfileFragment", "Image upload failed: " + e.getMessage());
+                    Log.e("orgProfileFragment", "Image upload failed: " + e.getMessage());
                 });
     }
 
@@ -196,7 +196,7 @@ public class orgProfileFragment extends Fragment {
         // Assuming you have a "profileImageUrl" field in your "human" node
         DatabaseReference userReference = databaseReference.child(currentUser.getUid());
         userReference.child("profileImageUrl").setValue(imageUrl)
-                .addOnSuccessListener(aVoid -> Log.d("OrgProfileFragment", "Image URL updated successfully in the database"))
-                .addOnFailureListener(e -> Log.e("OrgProfileFragment", "Failed to update image URL in the database: " + e.getMessage()));
+                .addOnSuccessListener(aVoid -> Log.d("orgProfileFragment", "Image URL updated successfully in the database"))
+                .addOnFailureListener(e -> Log.e("orgProfileFragment", "Failed to update image URL in the database: " + e.getMessage()));
     }
 }

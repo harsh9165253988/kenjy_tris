@@ -21,11 +21,6 @@ public class OrgDataModel {
         this.orgName = orgName;
         this.profileImageUrl=profileImageUrl;
 
-
-
-
-
-
     }
 
 
