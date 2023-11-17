@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.project.R;
 import com.example.project.userDataModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,8 +39,8 @@ public class userProfileFragment extends Fragment {
     private TextView genderTextView;
     private TextView numberTextView;
     private TextView skillTextView;
-
     private ImageView galleryImageView;
+    private ImageView back_button,settinga;
     private ImageView settinga;
     private ImageView back_button;
 
@@ -49,7 +48,6 @@ public class userProfileFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private final int GALLERY_REQ_CODE = 1000;
-
     private void updateImageView(String imageUrl) {
         if (isAdded() && imageUrl != null && !imageUrl.isEmpty()) {
             // Load the image with Glide and apply a circular transformation
@@ -59,11 +57,11 @@ public class userProfileFragment extends Fragment {
                     .into(galleryImageView);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
+        // Initialize TextViews and ImageView
         galleryImageView = view.findViewById(R.id.imageView4);
         back_button = view.findViewById(R.id.imageView16);
         nameTextView = view.findViewById(R.id.name);
@@ -72,8 +70,9 @@ public class userProfileFragment extends Fragment {
         genderTextView = view.findViewById(R.id.gender);
         numberTextView = view.findViewById(R.id.number);
         skillTextView = view.findViewById(R.id.skill);
-        settinga = view.findViewById(R.id.imageView3);
-
+       // back_button=view.findViewById(R.id.back_button);
+        settinga=view.findViewById(R.id.imageView3);
+        // Initialize Firebase components
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -143,9 +142,12 @@ public class userProfileFragment extends Fragment {
 
             } else {
                 Log.e("UserProfileFragment", "userName is null");
+                // Handle the case where userName is null
             }
         } else {
             Log.e("UserProfileFragment", "currentUser is null");
+            // Handle the case where currentUser is null
+            // Redirect the user to the login screen, for example
         }
 
         return view;
@@ -158,6 +160,7 @@ public class userProfileFragment extends Fragment {
             if (requestCode == GALLERY_REQ_CODE && data != null) {
                 Uri selectedImageUri = data.getData();
                 if (selectedImageUri != null) {
+                    // Upload the image to Firebase Storage
                     uploadImageToFirebase(selectedImageUri);
                 }
             }
@@ -165,28 +168,39 @@ public class userProfileFragment extends Fragment {
     }
 
     private void uploadImageToFirebase(Uri imageUri) {
+        // Create a unique name for the image in Firebase Storage
         String imageName = "profile_image_" + System.currentTimeMillis() + ".jpg";
+
+        // Get a reference to the Firebase Storage
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("profile_images").child(imageName);
 
+        // Upload the image to Firebase Storage
         storageRef.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
+                    // Image uploaded successfully
+                    // Now, you can save the image URL or download URL in your database or wherever needed
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        // uri is the download URL of the uploaded image
                         String imageUrl = uri.toString();
+                        // Save imageUrl to your database
                         updateProfileImage(imageUrl);
                     });
                 })
                 .addOnFailureListener(e -> {
+                    // Handle failure to upload image
                     Log.e("UserProfileFragment", "Image upload failed: " + e.getMessage());
                 });
     }
 
-
     private void updateProfileImage(String imageUrl) {
+        // Now, you can update the user's profile image URL in the database
+        // For example, you can use databaseReference.child("profileImageUrl").setValue(imageUrl);
+        // Update your database structure accordingly
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        // Assuming you have a "profileImageUrl" field in your "human" node
         DatabaseReference userReference = databaseReference.child(currentUser.getUid());
         userReference.child("profileImageUrl").setValue(imageUrl)
                 .addOnSuccessListener(aVoid -> Log.d("UserProfileFragment", "Image URL updated successfully in the database"))
                 .addOnFailureListener(e -> Log.e("UserProfileFragment", "Failed to update image URL in the database: " + e.getMessage()));
     }
-
 }
