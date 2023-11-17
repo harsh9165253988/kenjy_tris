@@ -2,6 +2,7 @@ package com.example.project;
 
 public class organizationdetail {
 
+
     String OrgName,Mail,Contact,Mission,Password,Location;
     public organizationdetail(String OrgName,String Mail,String Contact,String Mission,String Password,String Location)
     {
@@ -66,4 +67,8 @@ public class organizationdetail {
     public void setLocation(String location) {
         Location = location;
     }
-}
+
+
+
+    }
+

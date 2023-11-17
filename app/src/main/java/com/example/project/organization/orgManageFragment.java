@@ -44,6 +44,10 @@ public class orgManageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
+
+
         View view = inflater.inflate(R.layout.fragment_org_manage, container, false);
 
         ImageView menuIcon = view.findViewById(R.id.menuIcon);
@@ -100,6 +104,11 @@ public class orgManageFragment extends Fragment {
             }
         });
     }
+
+
+
+
+
     public void showPopupMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(requireContext(), view);
         popupMenu.getMenuInflater().inflate(R.menu.manage_menu, popupMenu.getMenu());
