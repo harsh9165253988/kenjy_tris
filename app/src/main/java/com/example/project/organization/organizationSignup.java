@@ -1,10 +1,12 @@
 package com.example.project.organization;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,8 +21,11 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.project.R;
 import com.example.project.organization.orgainizationSignIn;
 import com.example.project.organizationdetail;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -86,23 +91,7 @@ public class organizationSignup extends AppCompatActivity {
                     // If validations pass, attempt to sign up the user
                     signUpUser();
 
-                    rootnode=FirebaseDatabase.getInstance();
-                    reference=rootnode.getReference("organization");
 
-
-                   String OrgName,Mail,Contact,Mission,Password,Location;
-                    OrgName = unam.getEditableText().toString();
-                    Mail = mail.getEditableText().toString();
-                    Contact=mobnu.getText().toString();
-                    Mission=misn .getEditableText().toString();
-                    Password = paswd.getEditableText().toString();
-                    Location=lc.getSelectedItem().toString();
-
-
-
-
-                    organizationdetail od=new organizationdetail(OrgName,Mail,Contact,Mission,Password,Location);
-                    reference.child(OrgName).setValue(od);
 
                 }
             }
@@ -148,19 +137,52 @@ public class organizationSignup extends AppCompatActivity {
     private void signUpUser() {
         String email = ((TextView) findViewById(R.id.editTextEmail)).getText().toString().trim();
         String password = ((TextView) findViewById(R.id.editPassword)).getText().toString().trim();
+        String orgName=unam.getText().toString();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // Sign up success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            String uid = user.getUid();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(orgName) // Set the display name to the user's input
+                                    .build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("Profile", "User profile updated.");
+                                            }
+                                        }
+                                    });
+                            rootnode=FirebaseDatabase.getInstance();
+                            reference=rootnode.getReference("organization");
+
+
+                            String OrgName,Mail,Contact,Mission,Password,Location;
+                            OrgName = unam.getEditableText().toString();
+                            Mail = mail.getEditableText().toString();
+                            Contact=mobnu.getText().toString();
+                            Mission=misn .getEditableText().toString();
+                            Password = paswd.getEditableText().toString();
+                            Location=lc.getSelectedItem().toString();
+
+
+
+
+                            organizationdetail od=new organizationdetail(OrgName,Mail,Contact,Mission,Password,Location);
+                            reference.child(uid).setValue(od);
                         Toast.makeText(getApplicationContext(), "Sign up successful!", Toast.LENGTH_SHORT).show();
                         // You can add additional logic here, such as navigating to the main activity
                     } else {
                         // If sign up fails, display a message to the user.
                         Toast.makeText(getApplicationContext(), "Sign up failed. " + task.getException().getMessage(),
                                 Toast.LENGTH_SHORT).show();
-                    }
+                    }}
                 });
     }
 }
