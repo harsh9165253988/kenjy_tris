@@ -38,7 +38,7 @@ public class organizationSignup extends AppCompatActivity {
     private TextView mobnu;
     private TextView misn;
     private TextView paswd;
-   private Spinner lc;
+    private Spinner lc;
     private FirebaseAuth mAuth;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
@@ -176,18 +176,13 @@ public class organizationSignup extends AppCompatActivity {
 
                             organizationdetail od=new organizationdetail(OrgName,Mail,Contact,Mission,Password,Location);
                             reference.child(uid).setValue(od);
-                        Toast.makeText(getApplicationContext(), "Sign up successful!", Toast.LENGTH_SHORT).show();
-                        // You can add additional logic here, such as navigating to the main activity
-                    } else {
-                        // If sign up fails, display a message to the user.
-                        Toast.makeText(getApplicationContext(), "Sign up failed. " + task.getException().getMessage(),
-                                Toast.LENGTH_SHORT).show();
-                    }}
+                            Toast.makeText(getApplicationContext(), "Sign up successful!", Toast.LENGTH_SHORT).show();
+                            // You can add additional logic here, such as navigating to the main activity
+                        } else {
+                            // If sign up fails, display a message to the user.
+                            Toast.makeText(getApplicationContext(), "Sign up failed. " + task.getException().getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }}
                 });
     }
 }
-
-
-
-
-
