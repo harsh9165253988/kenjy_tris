@@ -18,6 +18,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 public class organizationDashboard extends AppCompatActivity {
     ChipNavigationBar chipNavigationBar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,8 @@ public class organizationDashboard extends AppCompatActivity {
 
 
         chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+
+
             @Override
             public void onItemSelected(int itemId) {
                 Fragment fragment = null;

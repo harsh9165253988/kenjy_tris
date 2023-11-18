@@ -24,4 +24,7 @@
     <string name="passworderror">The password must contain at least 8 character,and include uppercase and lowercase,number and a special character</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_org_info">OrgInfo</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

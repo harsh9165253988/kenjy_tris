@@ -7,7 +7,7 @@ public class userDataModel {
     private String mob;
     private String skl;
     private String email;
-  private String profileImageUrl;
+    private String profileImageUrl;
 
   
     public userDataModel() {
