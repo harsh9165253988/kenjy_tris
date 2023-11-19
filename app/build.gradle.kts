@@ -55,5 +55,8 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("com.google.code.gson:gson:2.8.9") // Replace with the latest version
+
+    implementation ("com.paypal.sdk:paypal-android-sdk:2.16.0")
 
 }

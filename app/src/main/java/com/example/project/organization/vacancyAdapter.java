@@ -32,6 +32,7 @@ public class vacancyAdapter extends RecyclerView.Adapter<vacancyAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Vacancy vacancy = vacancyList.get(position);
         holder.bind(vacancy);
+
     }
 
     @Override

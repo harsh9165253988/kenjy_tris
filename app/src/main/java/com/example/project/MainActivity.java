@@ -16,6 +16,7 @@ import android.widget.ResourceCursorAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import com.example.project.LocationOwner.userProfileFragment;
 
 import com.example.project.organization.Vacancy;
 import com.example.project.organization.orgainizationSignIn;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
+//notification ke liye
 
       /*  Drawable drawable= ResourcesCompat.getDrawable(getResources(),R.drawable.backarrow,null);
        // BitmapDrawable bitmapDrawable=drawable;

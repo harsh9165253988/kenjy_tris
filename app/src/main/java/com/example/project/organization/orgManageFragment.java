@@ -44,6 +44,8 @@ public class orgManageFragment extends Fragment {
     private List<Vacancy> vacancyList;
     private vacancyAdapter adapter;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -63,7 +65,6 @@ public class orgManageFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("organization");
         ArrayList<Integer> jobList =new ArrayList<>();
         String[] jobarray = getResources().getStringArray(R.array.job_options);
-
 
 
 
