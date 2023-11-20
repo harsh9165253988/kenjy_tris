@@ -39,12 +39,21 @@ public class userManageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_manage, container, false);
 
+
+
+
+
         usersReference = FirebaseDatabase.getInstance().getReference("human");
         vacanciesReference = FirebaseDatabase.getInstance().getReference("organization");
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new vacancyAdapter(new ArrayList<>());
+
+        // Set the showApplyButton value based on your fragment logic
+        boolean showApplyButton = isuserManageFragment(); // Update this with your actual logic
+        adapter.setShowApplyButton(showApplyButton);
+
         recyclerView.setAdapter(adapter);
 
         // Fetch current user skills
@@ -123,8 +132,10 @@ public class userManageFragment extends Fragment {
         });
     }
 
+    private boolean isuserManageFragment() {
+        // Implement the logic to identify whether this is the User Management fragment
+        return getClass() == userManageFragment.class;
+    }
 
 
 }
-
-
