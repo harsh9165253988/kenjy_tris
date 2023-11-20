@@ -82,12 +82,8 @@ public class userLogin extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign-in successful
-                            Toast.makeText(getApplicationContext(), "Sign-in successful", Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(getApplicationContext(), userDashboard.class);
-                            startActivity(intent);
-                            finish(); // Close the current activity
+                            // Check if the user is a human
+                            checkUserTypeAndNavigate(firebaseAuth.getCurrentUser().getUid());
                         } else {
                             // Sign-in failed
                             Toast.makeText(getApplicationContext(), "Sign-in failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -95,4 +91,32 @@ public class userLogin extends AppCompatActivity {
                     }
                 });
     }
+    private void checkUserTypeAndNavigate(String userId) {
+        DatabaseReference humanRef = FirebaseDatabase.getInstance().getReference("human").child(userId);
+
+        humanRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // User is a human, proceed with the login
+                    Toast.makeText(getApplicationContext(), "Sign-in successful", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getApplicationContext(), userDashboard.class);
+                    startActivity(intent);
+                    finish(); // Close the current activity
+                } else {
+                    // User is not a human
+                    Toast.makeText(getApplicationContext(), "You are not authorized to log in", Toast.LENGTH_SHORT).show();
+                    firebaseAuth.signOut(); // Sign out the user
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle database error if needed
+                Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

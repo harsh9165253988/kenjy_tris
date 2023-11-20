@@ -44,7 +44,7 @@ public class userManageFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new vacancyAdapter(new ArrayList<>());
+        adapter = new vacancyAdapter(new ArrayList<>(),requireContext());
         recyclerView.setAdapter(adapter);
 
         // Fetch current user skills
@@ -126,5 +126,3 @@ public class userManageFragment extends Fragment {
 
 
 }
-
-
