@@ -45,7 +45,7 @@ public class userDashboardFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-            // Fetch data from Firebase and add it to dataList
+        // Fetch data from Firebase and add it to dataList
         fetchDataFromFirebase();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -1,20 +1,23 @@
 package com.example.project.LocationOwner;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
+import com.example.project.organization.donation;
 import com.example.project.organization.organizationDetail;
 
 import java.util.List;
 
 public class organizationAdapter extends RecyclerView.Adapter<organizationAdapter.ViewHolder> {
-    private List<organizationDetail> data;
+    private static List<organizationDetail> data;
 
     public organizationAdapter(List<organizationDetail> dataList) {
         this.data = dataList;
@@ -27,11 +30,27 @@ public class organizationAdapter extends RecyclerView.Adapter<organizationAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView orgName, orgLocation;
+        Button donateButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
             orgName = itemView.findViewById(R.id.orgName);
             orgLocation = itemView.findViewById(R.id.orgLocation);
+            donateButton = itemView.findViewById(R.id.donate);
+
+            donateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        organizationDetail clickedOrganization = data.get(position);
+                        // Pass the necessary details to the donation activity
+                        Intent intent = new Intent(itemView.getContext(), donation.class);
+                        intent.putExtra("organizationDetail", clickedOrganization);
+                        itemView.getContext().startActivity(intent);
+                    }
+                }
+            });
         }
     }
 
