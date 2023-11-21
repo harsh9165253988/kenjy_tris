@@ -1,5 +1,6 @@
 package com.example.project.organization;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,6 +19,11 @@ import com.example.project.LocationOwner.userDashboard;
 import com.example.project.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class orgainizationSignIn extends AppCompatActivity {
     private AwesomeValidation awesomeValidation;
@@ -108,18 +114,39 @@ public class orgainizationSignIn extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     hideLoadingUI();
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        Toast.makeText(getApplicationContext(), "Sign in successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), organizationDashboard.class);
-                        startActivity(intent);
-                        finish(); // Close the current activity
-                        // You can add additional logic here, such as navigating to the main activity
+                        // Check if the user is a organization
+                        checkUserTypeAndNavigate(mAuth.getCurrentUser().getUid());
                     } else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(getApplicationContext(), "Sign in failed. " + task.getException().getMessage(),
-                                Toast.LENGTH_SHORT).show();
+                        // Sign-in failed
+                        Toast.makeText(getApplicationContext(), "Sign-in failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    private void checkUserTypeAndNavigate(String userId) {
+        DatabaseReference humanRef = FirebaseDatabase.getInstance().getReference("organization").child(userId);
+
+        humanRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // User is a human, proceed with the login
+                    Toast.makeText(getApplicationContext(), "Sign-in successful", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getApplicationContext(), organizationDashboard.class);
+                    startActivity(intent);
+                    finish(); // Close the current activity
+                } else {
+                    // User is not a human
+                    Toast.makeText(getApplicationContext(), "You are not authorized to log in", Toast.LENGTH_SHORT).show();
+                    mAuth.signOut(); // Sign out the user
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle database error if needed
+                Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

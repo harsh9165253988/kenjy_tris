@@ -9,6 +9,7 @@ public class Vacancy {
     private String location;
     private String dateTime;
     private String preferredSkills;
+    private String id;
 
     public Vacancy() {
         // Default constructor required for calls to DataSnapshot.getValue(Vacancy.class)
@@ -44,4 +45,11 @@ public class Vacancy {
     public String getPreferredSkills() {
         return preferredSkills;
     }
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }

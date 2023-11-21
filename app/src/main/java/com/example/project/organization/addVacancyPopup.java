@@ -1,63 +1,90 @@
- package com.example.project.organization;
- import android.content.Context;
- import android.graphics.Color;
- import android.graphics.drawable.ColorDrawable;
- import android.view.Gravity;
- import android.view.LayoutInflater;
- import android.view.View;
- import android.view.ViewGroup;
- import android.widget.Button;
- import android.widget.EditText;
- import android.widget.PopupWindow;
- import com.example.project.user.userSignup;
+// addVacancyPopup class
 
- import com.example.project.R;
- import com.google.firebase.auth.FirebaseAuth;
- import com.google.firebase.auth.FirebaseUser;
- import com.google.firebase.database.DatabaseReference;
+package com.example.project.organization;
 
- public class addVacancyPopup {
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-     public interface OnVacancyCreatedListener {
-         void onVacancyCreated(Vacancy vacancy);
-     }
+import com.airbnb.lottie.LottieAnimationView;
+import com.example.project.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
-     public static void showPopupWindow(Context context, View anchorView, DatabaseReference databaseReference, OnVacancyCreatedListener listener) {
-         View popupView = LayoutInflater.from(context).inflate(R.layout.activity_add_vacancy_popup, null);
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-         EditText editTextLocation = popupView.findViewById(R.id.editTextLocation);
-         EditText editTextDateTime = popupView.findViewById(R.id.editTextDateTime);
-         EditText editTextPreferredSkills = popupView.findViewById(R.id.editTextPreferredSkills);
-         Button buttonCreateVacancy = popupView.findViewById(R.id.buttonCreateVacancy);
+// ... (imports)
 
-         PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // Set background to transparent
-         popupWindow.setOutsideTouchable(true);
-         popupWindow.showAtLocation(anchorView, Gravity.CENTER, 0, 0);
+public class addVacancyPopup {
 
-         buttonCreateVacancy.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                 String uid = user.getUid();
-                 String location = editTextLocation.getText().toString();
-                 String dateTime = editTextDateTime.getText().toString();
-                 String preferredSkills = editTextPreferredSkills.getText().toString();
+    public interface OnVacancyCreatedListener {
+        void onVacancyCreated(Vacancy vacancy);
+    }
 
-                 // Validate input if needed
+    public static void showPopupWindow(Context context, View anchorView, DatabaseReference databaseReference, OnVacancyCreatedListener listener) {
+        View popupView = LayoutInflater.from(context).inflate(R.layout.activity_add_vacancy_popup, null);
 
-                 // Notify the listener about the created vacancy
-                 if (listener != null) {
+        Spinner spinnerLocation = popupView.findViewById(R.id.spinnerlocation);
+        EditText editTextDateTime = popupView.findViewById(R.id.editTextDateTime);
+        EditText editTextPreferredSkills = popupView.findViewById(R.id.editTextPreferredSkills);
+        Button buttonCreateVacancy = popupView.findViewById(R.id.buttonCreateVacancy);
 
-                     Vacancy vacancy = new Vacancy(location, dateTime, preferredSkills);
-                     databaseReference.child(uid).child("vacancy").push().setValue(vacancy);
-                     listener.onVacancyCreated(vacancy);
 
-                 }
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+        String currentDate=sdf.format(new Date());
+        editTextDateTime.setText(currentDate);
+        // Populate the spinner with your data
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.locations, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerLocation.setAdapter(adapter);
 
-                 // Dismiss the popup window
-                 popupWindow.dismiss();
-             }
-         });
-     }
- }
+        PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // Set background to transparent
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.showAtLocation(anchorView, Gravity.CENTER, 0, 0);
+
+        buttonCreateVacancy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String location = spinnerLocation.getSelectedItem().toString();
+                String dateTime = editTextDateTime.getText().toString();
+                String preferredSkills = editTextPreferredSkills.getText().toString();
+
+                // Initialize LottieAnimationView
+                LottieAnimationView lottieAnimationView = popupView.findViewById(R.id.lottieAnimationView);
+
+                // Start the animation
+                lottieAnimationView.playAnimation();
+
+                // Validate input if needed
+
+                // Notify the listener about the created vacancy
+                if (listener != null) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = user.getUid();
+                    Vacancy vacancy = new Vacancy(location, dateTime, preferredSkills);
+                    databaseReference.child(uid).child("vacancy").push().setValue(vacancy);
+                    listener.onVacancyCreated(vacancy);
+                }
+
+                // Dismiss the popup window
+                popupWindow.dismiss();
+            }
+        });
+    }
+}

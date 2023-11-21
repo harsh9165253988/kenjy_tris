@@ -6,53 +6,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/grey"
         app:cardCornerRadius="20dp"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardElevation="10dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        >
+        app:cardUseCompatPadding="true">
 
-
-
-
-
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-android:padding="30dp"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/editTextLocation"
+        <!-- LottieAnimationView for the background -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Location" />
+            android:layout_height="403dp"
 
-        <EditText
-            android:id="@+id/editTextDateTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Date and Time" />
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/cicle"
+            app:lottie_loop="true" />
 
-        <EditText
-            android:id="@+id/editTextPreferredSkills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Preferred Skills" />
+        <LinearLayout
+            android:layout_width="294dp"
+            android:layout_height="321dp"
+            android:layout_margin="50dp"
+            android:orientation="vertical"
+            android:padding="30dp">
 
-        <Button
-            android:id="@+id/buttonCreateVacancy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Vacancy" />
-    </LinearLayout>
+            <Spinner
+                android:id="@+id/spinnerlocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Location"
+
+                android:padding="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/editTextDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Date" />
+
+
+            <EditText
+                android:id="@+id/editTextPreferredSkills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Preferred Skills"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/buttonCreateVacancy"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="50dp"
+                android:text="Create Vacancy" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

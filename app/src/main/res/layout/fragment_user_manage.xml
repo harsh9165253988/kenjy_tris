@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".organization.orgManageFragment">
+    tools:context=".LocationOwner.userManageFragment">
+
+
 
     <ImageView
         android:id="@+id/backArrow"
@@ -49,7 +51,13 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="50dp"
+
+
+        />
+
+
+
 
 
 </RelativeLayout>

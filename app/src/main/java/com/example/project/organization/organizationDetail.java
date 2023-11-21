@@ -1,6 +1,8 @@
 package com.example.project.organization;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class organizationDetail {
+public class organizationDetail implements Parcelable {
 
     String OrgName, Mail, Contact, Mission, Password, Location;
 
@@ -13,6 +15,34 @@ public class organizationDetail {
         this.Location = Location;
     }
 
+    protected organizationDetail(Parcel in) {
+        OrgName = in.readString();
+        Location = in.readString();
+        // Read your other properties
+    }
+    public static final Creator<organizationDetail> CREATOR = new Creator<organizationDetail>() {
+        @Override
+        public organizationDetail createFromParcel(Parcel in) {
+            return new organizationDetail(in);
+        }
+
+        @Override
+        public organizationDetail[] newArray(int size) {
+            return new organizationDetail[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(OrgName);
+        dest.writeString(Location);
+        // Write your other properties
+    }
     public organizationDetail() {
         // Default constructor required for Firebase
     }
