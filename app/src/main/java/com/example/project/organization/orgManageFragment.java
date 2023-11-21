@@ -1,6 +1,7 @@
 package com.example.project.organization;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project.LocationOwner.organizationDashboard;
 import com.example.project.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,6 +51,7 @@ public class orgManageFragment extends Fragment {
         return view;
     }
 
+
     private void showCreateVacancyPopup() {
         addVacancyPopup.showPopupWindow(requireContext(), requireView(), databaseReference, new addVacancyPopup.OnVacancyCreatedListener() {
             @Override
@@ -56,6 +60,7 @@ public class orgManageFragment extends Fragment {
             }
         });
     }
+
 
     private void fetchDataFromFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -81,6 +86,16 @@ public class orgManageFragment extends Fragment {
                 @Override
                 public void onCancelled(DatabaseError error) {
                     Log.w("Firebase", "Failed to read value.", error.toException());
+                }
+            });
+            //backArrow is a image button
+
+            backArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i =new Intent(getActivity(), organizationDashboard.class);
+                    startActivity(i);
+
                 }
             });
         }
@@ -137,5 +152,6 @@ public class orgManageFragment extends Fragment {
             // Notify the adapter that the data set has changed
             adapter.notifyDataSetChanged();
         }
+
     }
 }

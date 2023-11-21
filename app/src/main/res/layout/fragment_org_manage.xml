@@ -9,13 +9,12 @@ tools:context=".organization.orgManageFragment">
         android:id="@+id/backArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/backarrow"
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-
         android:clickable="true"
-        android:onClick="onBackArrowClick"/>
+
+        android:src="@drawable/backarrow" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -177,6 +177,8 @@ public class organizationSignup extends AppCompatActivity {
                             organizationdetail od=new organizationdetail(OrgName,Mail,Contact,Mission,Password,Location);
                             reference.child(uid).setValue(od);
                             Toast.makeText(getApplicationContext(), "Sign up successful!", Toast.LENGTH_SHORT).show();
+                            Intent i=new Intent(organizationSignup.this,orgainizationSignIn.class);
+                            startActivity(i);
                             // You can add additional logic here, such as navigating to the main activity
                         } else {
                             // If sign up fails, display a message to the user.
