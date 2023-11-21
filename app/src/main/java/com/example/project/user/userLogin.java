@@ -83,8 +83,7 @@ public class userLogin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Check if the user is a human
-                            checkUserTypeAn
-                        dNavigate(firebaseAuth.getCurrentUser().getUid());
+                            checkUserTypeAndNavigate(firebaseAuth.getCurrentUser().getUid());
                         } else {
                             // Sign-in failed
                             Toast.makeText(getApplicationContext(), "Sign-in failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
