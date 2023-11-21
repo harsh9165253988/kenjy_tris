@@ -71,7 +71,6 @@ public class orgManageFragment extends Fragment {
                 // Handle the created vacancy, update UI or perform other actions
             }
         });
-
     }
 
     private void fetchDataFromFirebase() {
@@ -121,15 +120,6 @@ public class orgManageFragment extends Fragment {
 
         popupMenu.show();
     }
-    private void showCreateVacancyPopup() {
-        addVacancyPopup.showPopupWindow(requireContext(), requireView(), databaseReference, new addVacancyPopup.OnVacancyCreatedListener() {
-            @Override
-            public void onVacancyCreated(Vacancy vacancy) {
-                // Handle the created vacancy, update UI or perform other actions
-            }
-        });
-    }
-
 
 
 

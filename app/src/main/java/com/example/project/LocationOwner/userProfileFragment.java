@@ -93,7 +93,7 @@ public class userProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), user_setting.class);
                 startActivity(intent);
-                getActivity().finish();
+
             }
         });
 

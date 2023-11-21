@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.example.project.R;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.project.organization.Vacancy;
 import com.example.project.organization.vacancyAdapter;
 import com.example.project.userDataModel;
@@ -24,16 +25,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-// ... (imports)
-
 public class userManageFragment extends Fragment {
     private DatabaseReference usersReference;
     private DatabaseReference vacanciesReference;
-    private RecyclerView recyclerView;
+    private
+    RecyclerView recyclerView;
     private vacancyAdapter adapter;
 
     private ImageView backArrow;
@@ -55,7 +51,8 @@ public class userManageFragment extends Fragment {
         });
 
 
-        return view;
+
+
         View view = inflater.inflate(R.layout.fragment_user_manage, container, false);
 
 
