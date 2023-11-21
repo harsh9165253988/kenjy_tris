@@ -130,6 +130,31 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite" />
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="72dp"
+                    android:layout_height="63dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/loadingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:visibility="gone"
+                    android:text="Loading...."
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
             </LinearLayout>
         </ScrollView>
 

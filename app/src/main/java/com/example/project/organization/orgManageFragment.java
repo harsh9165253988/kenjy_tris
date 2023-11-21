@@ -1,6 +1,7 @@
 package com.example.project.organization;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.project.LocationOwner.organizationAdapter;
 import com.example.project.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,7 +30,7 @@ public class orgManageFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<Vacancy> vacancyList;
     private vacancyAdapter adapter;
-
+    private ImageView backArrow;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_org_manage, container, false);
@@ -36,19 +38,41 @@ public class orgManageFragment extends Fragment {
         ImageView menuIcon = view.findViewById(R.id.menuIcon);
         menuIcon.setOnClickListener(this::showPopupMenu);
         recyclerView = view.findViewById(R.id.recyclerView);
-
+        backArrow=view.findViewById(R.id.backArrow);
         vacancyList = new ArrayList<>();
         adapter = new vacancyAdapter(vacancyList, requireContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("organization");
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), orgProfileFragment.class);
+                startActivity(i);
+                getActivity().finish();
+            }
+        });
+
+        // Handle btnDeleteVacancy click if needed
+
+        // Fetch data from Firebase and update the RecyclerView
         fetchDataFromFirebase();
 
         return view;
     }
 
 
+    private void showCreateVacancyPopup() {
+        addVacancyPopup.showPopupWindow(requireContext(), requireView(), databaseReference, new addVacancyPopup.OnVacancyCreatedListener() {
+            @Override
+            public void onVacancyCreated(Vacancy vacancy) {
+                // Handle the created vacancy, update UI or perform other actions
+            }
+        });
+
+    }
 
     private void fetchDataFromFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

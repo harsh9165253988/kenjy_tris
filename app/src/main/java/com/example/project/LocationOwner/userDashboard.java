@@ -10,6 +10,7 @@ import com.example.project.LocationOwner.userDashboardFragment;
 import com.example.project.LocationOwner.userManageFragment;
 import com.example.project.LocationOwner.userProfileFragment;
 import com.example.project.R;
+import com.example.project.organization.orgDashboardFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class userDashboard extends AppCompatActivity {
@@ -21,18 +22,13 @@ public class userDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_user_dashboard);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
-
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);
-        chipNavigationBar.setItemSelected(R.id.bottom_nav_dashboard,true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new userDashboardFragment()).commit();
+        chipNavigationBar.setItemSelected(R.id.bottom_nav_dashboard, true);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new userDashboardFragment()).commit();
         bottomMenu();
     }
 
-
     private void bottomMenu() {
-
-
         chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int itemId) {

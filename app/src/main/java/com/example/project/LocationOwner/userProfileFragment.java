@@ -57,6 +57,9 @@ public class userProfileFragment extends Fragment {
                     .into(galleryImageView);
         }
     }
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
@@ -70,8 +73,9 @@ public class userProfileFragment extends Fragment {
         genderTextView = view.findViewById(R.id.gender);
         numberTextView = view.findViewById(R.id.number);
         skillTextView = view.findViewById(R.id.skill);
-        settinga = view.findViewById(R.id.imageView3);
-
+       // back_button=view.findViewById(R.id.back_button);
+        settinga=view.findViewById(R.id.imageView3);
+        // Initialize Firebase components
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -112,38 +116,38 @@ public class userProfileFragment extends Fragment {
 
                 Query query = databaseReference.child("human").child(userId);
 
-                query.addValueEventListener(new ValueEventListener() {
+                    query.addValueEventListener(new ValueEventListener() {
 
 
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            Log.d("UserProfileFragment", "DataSnapshot: " + dataSnapshot.getValue());
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Log.d("UserProfileFragment", "DataSnapshot: " + dataSnapshot.getValue());
 
-                            // Update TextViews with data from Firebase
-                            userDataModel user = dataSnapshot.getValue(userDataModel.class);
-                            if (user != null) {
-                                nameTextView.setText(user.getName());
-                                emailTextView.setText(user.getEmail());
-                                ageTextView.setText(user.getAge());
-                                genderTextView.setText(user.getGender());
-                                numberTextView.setText(user.getMob());
-                                skillTextView.setText(user.getSkl());
-                                updateImageView(user.getProfileImageUrl());
+                                // Update TextViews with data from Firebase
+                                userDataModel user = dataSnapshot.getValue(userDataModel.class);
+                                if (user != null) {
+                                    nameTextView.setText(user.getName());
+                                    emailTextView.setText(user.getEmail());
+                                    ageTextView.setText(user.getAge());
+                                    genderTextView.setText(user.getGender());
+                                    numberTextView.setText(user.getMob());
+                                    skillTextView.setText(user.getSkl());
+                                    updateImageView(user.getProfileImageUrl());
+                                }
+                            } else {
+                                Log.e("UserProfileFragment", "User with ID " + userId + " does not exist");
+                                // Handle the case where the user does not exist
                             }
-                        } else {
-                            Log.e("UserProfileFragment", "User with ID " + userId + " does not exist");
-                            // Handle the case where the user does not exist
                         }
-                    }
 
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.e("UserProfileFragment", "DatabaseError: " + databaseError.getMessage());
-                        // Handle errors
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Log.e("UserProfileFragment", "DatabaseError: " + databaseError.getMessage());
+                            // Handle errors
+                        }
+                    });
 
             } else {
                 Log.e("UserProfileFragment", "userName is null");

@@ -14,6 +14,22 @@ public class Vacancy {
     public Vacancy() {
         // Default constructor required for calls to DataSnapshot.getValue(Vacancy.class)
     }
+    private String location;
+    private String dateTime;
+    private String preferredSkills;
+
+    public Vacancy(String location, String dateTime, String preferredSkills) {
+        this.location = location;
+        this.dateTime = dateTime;
+        this.preferredSkills = preferredSkills;
+    }
+
+    public boolean hasRequiredSkills(List<String> userSkills) {
+        List<String> requiredSkills = getRequiredSkills();
+        return userSkills.containsAll(requiredSkills);
+    public Vacancy() {
+        // Default constructor required for calls to DataSnapshot.getValue(Vacancy.class)
+    }
 
     public Vacancy(String location, String dateTime, String preferredSkills) {
         this.location = location;
@@ -52,4 +68,9 @@ public class Vacancy {
         this.id = id;
     }
 
+}
+
+    public String getPreferredSkills() {
+        return preferredSkills;
+    }
 }
