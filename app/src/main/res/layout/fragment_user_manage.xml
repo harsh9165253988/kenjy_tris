@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".LocationOwner.userManageFragment">
 
+
+
     <ImageView
         android:id="@+id/backArrow"
         android:layout_width="wrap_content"
@@ -53,6 +55,9 @@
 
 
         />
+
+
+
 
 
 </RelativeLayout>

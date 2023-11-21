@@ -25,11 +25,14 @@ import org.json.JSONObject;
 import java.math.BigDecimal;
 
 public class donation extends AppCompatActivity {
-
+//UI components
     EditText name;
-    EditText email;
+
     EditText amnt;
     Button bnt;
+
+    //PayPal configuration and client ID
+    //paypal android sdk wala
     String clientId= "AcUwCwR18eKqblPf-a5XfEECOU89mlYQGYFNXL5O1OHdjmblTOHDsJoi-fNg5juE7kzUFqJ64F-MIu6X";
     int PAYPAL_REQUEST_CODE=123;
     public  static PayPalConfiguration configuration;
@@ -41,7 +44,6 @@ public class donation extends AppCompatActivity {
         setContentView(R.layout.activity_donation);
 
         name = findViewById(R.id.namedonation);
-
         bnt = findViewById(R.id.paydonation);
         amnt = findViewById(R.id.amountdonation);
 
@@ -64,7 +66,7 @@ public class donation extends AppCompatActivity {
         private void getPayment(){
 
             String amounts=amnt.getText().toString();
-            PayPalPayment payment=new PayPalPayment(new BigDecimal(String.valueOf(amounts)),"USD","KenjyTris",PayPalPayment.PAYMENT_INTENT_SALE);
+            PayPalPayment payment=new PayPalPayment(new BigDecimal(String.valueOf(amounts)),"USD","Amount",PayPalPayment.PAYMENT_INTENT_SALE);
 
             Intent intent=new Intent(this, PaymentActivity.class);
             intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,configuration);

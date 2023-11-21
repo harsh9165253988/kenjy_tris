@@ -17,12 +17,15 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.project.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // ... (imports)
@@ -41,6 +44,10 @@ public class addVacancyPopup {
         EditText editTextPreferredSkills = popupView.findViewById(R.id.editTextPreferredSkills);
         Button buttonCreateVacancy = popupView.findViewById(R.id.buttonCreateVacancy);
 
+
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+        String currentDate=sdf.format(new Date());
+        editTextDateTime.setText(currentDate);
         // Populate the spinner with your data
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.locations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -57,6 +64,12 @@ public class addVacancyPopup {
                 String location = spinnerLocation.getSelectedItem().toString();
                 String dateTime = editTextDateTime.getText().toString();
                 String preferredSkills = editTextPreferredSkills.getText().toString();
+
+                // Initialize LottieAnimationView
+                LottieAnimationView lottieAnimationView = popupView.findViewById(R.id.lottieAnimationView);
+
+                // Start the animation
+                lottieAnimationView.playAnimation();
 
                 // Validate input if needed
 

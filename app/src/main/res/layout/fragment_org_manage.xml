@@ -15,7 +15,7 @@ tools:context=".organization.orgManageFragment">
         android:layout_marginTop="16dp"
 
         android:clickable="true"
-        android:onClick="showPopupMenu"/>
+        android:onClick="onBackArrowClick"/>
 
     <TextView
         android:layout_width="wrap_content"
