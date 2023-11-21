@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.example.project.R;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.project.organization.Vacancy;
 import com.example.project.organization.vacancyAdapter;
 import com.example.project.userDataModel;
@@ -22,7 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 public class userManageFragment extends Fragment {
     private DatabaseReference usersReference;
     private DatabaseReference vacanciesReference;
-    private RecyclerView recyclerView;
+    private
+    RecyclerView recyclerView;
     private vacancyAdapter adapter;
 
     private ImageView backArrow;

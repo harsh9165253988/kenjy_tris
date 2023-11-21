@@ -90,12 +90,13 @@
 
                     <TextView
                         android:id="@+id/name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="300dp"
+                        android:layout_height="33dp"
                         android:layout_marginTop="20dp"
                         android:text="Full Name"
+                        android:textAlignment="center"
                         android:textColor="#ffffff"
-                        android:textSize="20dp"
+                        android:textSize="30dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/imageView4"
                         app:layout_constraintStart_toStartOf="@+id/imageView4"
@@ -103,12 +104,13 @@
 
                     <TextView
                         android:id="@+id/email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="363dp"
+                        android:layout_height="43dp"
                         android:layout_marginTop="70dp"
                         android:text="email:farukhmansuri@gmail.com"
-                        android:textColor="#ffffff"
+                        android:textAlignment="center"
 
+                        android:textColor="#ffffff"
                         android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="@+id/imageView4"
                         app:layout_constraintStart_toStartOf="@+id/imageView4"
@@ -119,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="420dp"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="80dp"
+                        android:layout_marginTop="50dp"
                         android:layout_marginEnd="30dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/white_"
@@ -199,7 +201,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical" >
+                                    android:orientation="vertical">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
