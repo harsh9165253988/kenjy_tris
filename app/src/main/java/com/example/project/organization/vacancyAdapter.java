@@ -23,6 +23,11 @@ public class vacancyAdapter extends RecyclerView.Adapter<vacancyAdapter.ViewHold
     private Context context;
     private String userId;
     private FirebaseAuth firebaseAuth;
+    private boolean showApplyButton;
+    // Set the showApplyButton value from the fragment
+    public void setShowApplyButton(boolean showApplyButton) {
+        this.showApplyButton = showApplyButton;
+    }
 
     public vacancyAdapter(List<Vacancy> vacancyList, Context context) {
         this.vacancyList = vacancyList;

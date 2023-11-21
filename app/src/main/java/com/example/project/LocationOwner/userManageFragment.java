@@ -48,7 +48,7 @@ public class userManageFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new vacancyAdapter(new ArrayList<>());
+        adapter = new vacancyAdapter(new ArrayList<>(),requireContext());
 
         // Set the showApplyButton value based on your fragment logic
         boolean showApplyButton = isuserManageFragment(); // Update this with your actual logic
