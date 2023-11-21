@@ -29,7 +29,7 @@
         <ScrollView
             android:id="@+id/login_form"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -42,10 +42,9 @@
                     android:layout_width="1500dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center_horizontal"
-                    app:lottie_rawRes="@raw/planet"
-                    app:lottie_loop="true"
                     app:lottie_autoPlay="true"
-                    />
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/planet" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -64,6 +63,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,13 +72,13 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginTop="50dp"
-                    android:ems="10"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#FFFFFF" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="50dp"
+                        android:ems="10"
+                        android:inputType="textEmailAddress"
+                        android:textColor="#FFFFFF" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,12 +86,12 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/form_email"/>
+                    android:hint="@string/form_email" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/form_phone"/>
+                    android:hint="@string/form_phone" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -129,7 +129,35 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite" />
 
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="72dp"
+                    android:layout_height="63dp"
+                    android:visibility="gone"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="10dp" />
+
+                <EditText
+                    android:id="@+id/loadingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:visibility="gone"
+                    android:text="Loading...."
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
             </LinearLayout>
+
         </ScrollView>
 
 

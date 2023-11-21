@@ -315,7 +315,8 @@
                                         android:id="@+id/view9"
                                         android:layout_width="match_parent"
                                         android:layout_height="1dp"
-                                        android:background="#D9D9D9" />
+                                        android:background="#D9D9D9"
+                                        android:backgroundTint="@color/black" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -348,7 +349,8 @@
                                         android:id="@+id/view8"
                                         android:layout_width="match_parent"
                                         android:layout_height="1dp"
-                                        android:background="#D9D9D9" />
+                                        android:background="#D9D9D9"
+                                        android:backgroundTint="@color/black" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -409,12 +411,6 @@
                                             android:textSize="20sp" />
 
                                     </LinearLayout>
-
-                                    <View
-                                        android:id="@+id/view6"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="1dp"
-                                        android:background="#D9D9D9" />
 
                                 </LinearLayout>
                             </ScrollView>

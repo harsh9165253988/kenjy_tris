@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
-        tools:targetApi="31">
+        tools:targetApi="31" >
 
         <activity android:name=".organization.organizationDashboard">
             <!-- Add intent filters if necessary -->
@@ -25,6 +25,9 @@
             android:exported="false"
             android:label="@string/title_activity_org_info"
             android:theme="@style/Theme.Project.NoActionBar" />
+        <activity
+            android:name=".LocationOwner.InformationProfile"
+            android:exported="false" />
         <activity
             android:name=".organization.addVacancyPopup"
             android:exported="false" />
@@ -54,7 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".splash"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +66,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

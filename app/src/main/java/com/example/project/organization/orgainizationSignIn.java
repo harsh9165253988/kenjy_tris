@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class orgainizationSignIn extends AppCompatActivity {
     private Button signin;
     private TextView signup;
     private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
+    private TextView loadingText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class orgainizationSignIn extends AppCompatActivity {
 
         signin = findViewById(R.id.buttonLogin);
         signup = findViewById(R.id.new_member);
+        progressBar=findViewById(R.id.progressBar);
+        loadingText=findViewById(R.id.loadingText);
 
         String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
         awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
@@ -52,18 +57,56 @@ public class orgainizationSignIn extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), organizationSignup.class);
-                startActivity(i);
+                // Show loading UI
+                progressBar.setVisibility(View.VISIBLE);
+                loadingText.setVisibility(View.VISIBLE);
+
+                // Perform background task (simulate with a delay for illustration)
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // Simulate some work
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+
+                        }
+
+                        // Hide loading UI when the task is complete
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Hide loading UI
+                                progressBar.setVisibility(View.GONE);
+                                loadingText.setVisibility(View.GONE);
+
+                                // Start the new activity
+                                Intent i = new Intent(getApplicationContext(), organizationSignup.class);
+                                startActivity(i);
+                            }
+                        });
+                    }
+                }).start();
             }
         });
+    }
+    private void showLoadingUI() {
+        progressBar.setVisibility(View.VISIBLE);
+        loadingText.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoadingUI() {
+        progressBar.setVisibility(View.GONE);
+        loadingText.setVisibility(View.GONE);
     }
 
     private void signInUser() {
         String email = ((TextView) findViewById(R.id.editTextEmail)).getText().toString().trim();
         String password = ((TextView) findViewById(R.id.editPassword)).getText().toString().trim();
-
+        showLoadingUI();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
+                    hideLoadingUI();
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
