@@ -10,11 +10,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
 
 import com.example.project.R;
-import com.example.project.LocationOwner.userAdapter;
-import com.example.project.userDataModel;
+import com.example.project.adapter.userAdapter;
+import com.example.project.dataModels.userDataModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -80,6 +79,10 @@ public class orgDashboardFragment extends Fragment {
 
         return view;
     }
+    private void setupRecyclerView() {
+        adapter = new userAdapter(dataList);
+        recyclerView.setAdapter(adapter);
+    }
 
     private void fetchDataFromFirebase() {
         // Use Firebase Database or Firestore to fetch data
@@ -97,7 +100,14 @@ public class orgDashboardFragment extends Fragment {
                     dataList.add(data);
                 }
 
-                adapter.notifyDataSetChanged();
+
+                if (adapter == null) {
+                    // Initialize adapter and set up RecyclerView only once
+                    setupRecyclerView();
+                } else {
+                    // Notify the adapter about the data change
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override

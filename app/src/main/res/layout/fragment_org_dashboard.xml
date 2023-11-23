@@ -27,7 +27,7 @@
         android:id="@+id/search"
         app:iconifiedByDefault="false"
         app:searchHintIcon="@null"
-        app:queryHint="Search..."
+        app:queryHint="Enter name or skill..."
         android:focusable="false"
         app:closeIcon="@drawable/cross_icon"
         app:searchIcon="@drawable/search_icon"

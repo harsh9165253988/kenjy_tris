@@ -1,4 +1,4 @@
-package com.example.project.user;
+package com.example.project.dataModels;
 
 import java.net.PortUnreachableException;
 

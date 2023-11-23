@@ -1,4 +1,4 @@
-package com.example.project.LocationOwner;
+package com.example.project.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
-import com.example.project.userDataModel;
+import com.example.project.dataModels.userDataModel;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.project.LocationOwner;
+package com.example.project.user;
 
 import static java.lang.Character.toLowerCase;
 
@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
-import com.example.project.organization.organizationDetail;
+import com.example.project.adapter.organizationAdapter;
+import com.example.project.dataModels.organizationDetail;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

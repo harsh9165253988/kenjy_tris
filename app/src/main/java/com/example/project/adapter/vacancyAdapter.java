@@ -1,4 +1,4 @@
-package com.example.project.organization;
+package com.example.project.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.project.R;
+import com.example.project.dataModels.Vacancy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

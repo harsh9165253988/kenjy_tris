@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.LocationOwner.organizationDashboard;
 import com.example.project.R;
+import com.example.project.adapter.vacancyAdapter;
+import com.example.project.dataModels.Vacancy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -119,6 +121,7 @@ public class orgManageFragment extends Fragment {
 
         popupMenu.show();
     }
+
 
 
 

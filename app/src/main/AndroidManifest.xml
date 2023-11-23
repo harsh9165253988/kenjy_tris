@@ -92,7 +92,7 @@
             android:name=".LocationOwner.editprofile"
             android:exported="false" />
         <activity
-            android:name=".LocationOwner.userDashboard"
+            android:name=".user.userDashboard"
             android:exported="false" />
         <activity
             android:name=".organization.orgainizationSignIn"

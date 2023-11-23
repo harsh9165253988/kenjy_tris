@@ -1,4 +1,4 @@
-package com.example.project.LocationOwner;
+package com.example.project.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R; // Replace with your actual package name
-import com.example.project.userDataModel;
+import com.example.project.dataModels.userDataModel;
 
 import java.util.List;
 

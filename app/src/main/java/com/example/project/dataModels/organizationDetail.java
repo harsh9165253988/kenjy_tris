@@ -1,23 +1,36 @@
-package com.example.project.organization;
+package com.example.project.dataModels;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class organizationDetail implements Parcelable {
 
-    String OrgName, Mail, Contact, Mission, Password, Location;
+    String OrgName, Mail, Contact, Mission, Password, Location,ProfileImageUrl,organizationId;
 
-    public organizationDetail(String OrgName, String Mail, String Contact, String Mission, String Password, String Location) {
+    public String getProfileImageUrl() {
+        return ProfileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        ProfileImageUrl = profileImageUrl;
+    }
+
+
+
+    public organizationDetail(String OrgName, String Mail, String Contact, String Mission, String Password, String Location, String ProfileImageUrl, String organizationId) {
         this.OrgName = OrgName;
         this.Mail = Mail;
         this.Contact = Contact;
         this.Mission = Mission;
         this.Password = Password;
         this.Location = Location;
+        this.ProfileImageUrl=ProfileImageUrl;
+        this.organizationId = organizationId;
     }
 
     protected organizationDetail(Parcel in) {
         OrgName = in.readString();
         Location = in.readString();
+        organizationId = in.readString();
         // Read your other properties
     }
     public static final Creator<organizationDetail> CREATOR = new Creator<organizationDetail>() {
@@ -51,6 +64,7 @@ public class organizationDetail implements Parcelable {
         return OrgName;
     }
 
+
     public void setOrgName(String orgName) {
         OrgName = orgName;
     }
@@ -61,6 +75,13 @@ public class organizationDetail implements Parcelable {
 
     public void setMail(String mail) {
         Mail = mail;
+    }
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getContact() {
@@ -94,4 +115,5 @@ public class organizationDetail implements Parcelable {
     public void setLocation(String location) {
         Location = location;
     }
+
 }

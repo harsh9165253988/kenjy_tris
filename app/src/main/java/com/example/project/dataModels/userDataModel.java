@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.dataModels;
 
 public class userDataModel {
     private String name;

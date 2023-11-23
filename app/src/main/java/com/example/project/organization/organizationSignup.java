@@ -163,19 +163,24 @@ public class organizationSignup extends AppCompatActivity {
                             reference=rootnode.getReference("organization");
 
 
-                            String OrgName,Mail,Contact,Mission,Password,Location;
+                            String OrgName,Mail,Contact,Mission,Password,Location,organizationId;
                             OrgName = unam.getEditableText().toString();
                             Mail = mail.getEditableText().toString();
                             Contact=mobnu.getText().toString();
                             Mission=misn .getEditableText().toString();
                             Password = paswd.getEditableText().toString();
                             Location=lc.getSelectedItem().toString();
+                            organizationId = uid.toString();
 
 
 
 
                             organizationdetail od=new organizationdetail(OrgName,Mail,Contact,Mission,Password,Location);
                             reference.child(uid).setValue(od);
+
+                            // Create a node under each organization's UID with the organization ID
+                            DatabaseReference organizationIdReference = rootnode.getReference("organization").child(uid).child("organizationId");
+                            organizationIdReference.setValue(uid);
                             Toast.makeText(getApplicationContext(), "Sign up successful!", Toast.LENGTH_SHORT).show();
                             Intent i=new Intent(organizationSignup.this,orgainizationSignIn.class);
                             startActivity(i);

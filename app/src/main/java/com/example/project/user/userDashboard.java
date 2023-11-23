@@ -1,13 +1,12 @@
-package com.example.project.LocationOwner;
+package com.example.project.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
-import com.example.project.LocationOwner.userDashboardFragment;
-import com.example.project.LocationOwner.userManageFragment;
-import com.example.project.LocationOwner.userProfileFragment;
+
+import com.example.project.user.userManageFragment;
 import com.example.project.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
