@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".LocationOwner.organizationDashboard"
-    android:id="@+id/fragment_container">
+    android:id="@+id/organization_container">
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/bottom_nav_menu"

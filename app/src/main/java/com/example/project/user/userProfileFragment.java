@@ -1,4 +1,4 @@
-package com.example.project.LocationOwner;
+package com.example.project.user;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,8 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.project.LocationOwner.user_setting;
 import com.example.project.R;
-import com.example.project.userDataModel;
+import com.example.project.dataModels.userDataModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

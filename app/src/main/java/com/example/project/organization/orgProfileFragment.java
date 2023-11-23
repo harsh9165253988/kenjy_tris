@@ -1,5 +1,6 @@
 package com.example.project.organization;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,17 +9,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.project.LocationOwner.organizationDashboard;
 import com.example.project.R;
-import com.example.project.organization.OrgDataModel;
+import com.example.project.dataModels.OrgDataModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -41,13 +45,16 @@ public class orgProfileFragment extends Fragment {
     private TextView numberTextView;
     private TextView AboutMissionTextView;
     private ImageView galleryImageView;
-
+    AlertDialog.Builder builder;
     private ImageView back_button;
+    private Button logoutbtn;
 
     // Firebase
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private final int GALLERY_REQ_CODE = 1000;
+
+
     private void updateImageView(String imageUrl) {
         if (isAdded() && imageUrl != null && !imageUrl.isEmpty()) {
             // Load the image with Glide and apply a circular transformation
@@ -56,6 +63,7 @@ public class orgProfileFragment extends Fragment {
                     .transform(new CircleCrop())
                     .into(galleryImageView);
         }
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,23 +74,49 @@ public class orgProfileFragment extends Fragment {
         back_button = view.findViewById(R.id.imageView16);
         nameTextView = view.findViewById(R.id.name);
         emailTextView = view.findViewById(R.id.mail);
-      location=view.findViewById(R.id.Location);
+        location=view.findViewById(R.id.Location);
         numberTextView = view.findViewById(R.id.number);
         AboutMissionTextView = view.findViewById(R.id.mission);
-
-
+        logoutbtn=view.findViewById(R.id.logout);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        builder = new AlertDialog.Builder(getActivity());
 
-        back_button.setOnClickListener(new View.OnClickListener() {
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Instead of handling back press here, let the hosting activity handle it
-                getActivity().onBackPressed();
+            public void onClick(View v) {
+                // Show a confirmation dialog before logging out
+                builder.setMessage("Are you sure you want to logout?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // User clicked Yes, sign out
+                                firebaseAuth.signOut();
+
+                                dialog.dismiss();
+                                Intent i=new Intent(getActivity(),orgainizationSignIn.class);
+                                startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // User clicked No, do nothing or dismiss the dialog
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         });
-
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent i =new Intent(getActivity(), organizationDashboard.class) ;
+              startActivity(i);
+              getActivity().finish();
+            }
+        });
 
 
 

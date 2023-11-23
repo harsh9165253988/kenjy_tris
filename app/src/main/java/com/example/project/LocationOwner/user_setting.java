@@ -41,7 +41,7 @@ public class user_setting extends AppCompatActivity {
                                 // Finish the current activity to remove it from the stack
                                 finish();
 
-
+                                FirebaseAuth.getInstance().signOut();
                                 Intent intent = new Intent(user_setting.this, userLogin.class);
                                 startActivity(intent);
                             }

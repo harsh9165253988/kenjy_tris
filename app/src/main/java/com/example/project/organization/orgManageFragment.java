@@ -13,8 +13,9 @@ import android.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.project.LocationOwner.organizationAdapter;
 import com.example.project.R;
+import com.example.project.adapter.vacancyAdapter;
+import com.example.project.dataModels.Vacancy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -73,6 +74,7 @@ public class orgManageFragment extends Fragment {
         });
     }
 
+
     private void fetchDataFromFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -97,6 +99,16 @@ public class orgManageFragment extends Fragment {
                 @Override
                 public void onCancelled(DatabaseError error) {
                     Log.w("Firebase", "Failed to read value.", error.toException());
+                }
+            });
+            //backArrow is a image button
+
+            backArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i =new Intent(getActivity(), organizationDashboard.class);
+                    startActivity(i);
+
                 }
             });
         }

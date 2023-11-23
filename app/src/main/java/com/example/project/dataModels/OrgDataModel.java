@@ -1,4 +1,4 @@
-package com.example.project.organization;
+package com.example.project.dataModels;
 
 public class OrgDataModel {
 

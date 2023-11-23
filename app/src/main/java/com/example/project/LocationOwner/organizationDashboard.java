@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
-import com.example.project.LocationOwner.userDashboardFragment;
+import com.example.project.user.userDashboardFragment;
 import com.example.project.organization.orgDashboardFragment;
 import com.example.project.organization.orgManageFragment;
 import com.example.project.organization.orgProfileFragment;
@@ -24,7 +24,7 @@ public class organizationDashboard extends AppCompatActivity {
 
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);
         chipNavigationBar.setItemSelected(R.id.bottom_nav_dashboard, true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new orgDashboardFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.organization_container, new orgDashboardFragment()).commit();
         bottomMenu();
     }
 
@@ -42,22 +42,23 @@ public class organizationDashboard extends AppCompatActivity {
                     fragment = new orgProfileFragment();
                 }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.organization_container, fragment).commit();
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.organization_container);
 
-        if (currentFragment instanceof userDashboardFragment) {
+        if (currentFragment instanceof orgDashboardFragment) {
             // If the current fragment is userDashboardFragment
             if (doubleBackToExitPressedOnce) {
                 // If the back button is pressed twice within a certain time frame, exit the app
                 super.onBackPressed();
                 finish();
             } else {
+
                 // Show a toast or message indicating that the user should press back again to exit
                 doubleBackToExitPressedOnce = true;
                 // Use a Handler to reset the doubleBackToExitPressedOnce variable after a specified delay
@@ -66,7 +67,7 @@ public class organizationDashboard extends AppCompatActivity {
         } else {
             // If it's not the userDashboardFragment, navigate back to it
             chipNavigationBar.setItemSelected(R.id.bottom_nav_dashboard, true);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new userDashboardFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.organization_container, new orgDashboardFragment()).commit();
         }
     }
 }
