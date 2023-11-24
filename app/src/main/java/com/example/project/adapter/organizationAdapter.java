@@ -112,24 +112,30 @@ public class organizationAdapter extends RecyclerView.Adapter<organizationAdapte
             if (user != null) {
                 String userId = user.getUid();
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                DatabaseReference organizationRef = FirebaseDatabase.getInstance().getReference()
                         .child("organization")
                         .child(organizationId)
                         .child("followers")
                         .child(userId);
 
-                // Check if the user is already following
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                DatabaseReference userFollowingRef = FirebaseDatabase.getInstance().getReference()
+                        .child("human")
+                        .child(userId)
+                        .child("following")
+                        .child(organizationId);
+
+                organizationRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             // User is already following, so unfollow (delete the node)
-                            databaseReference.removeValue()
+                            organizationRef.removeValue()
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(itemView.getContext(), "Unfollowed", Toast.LENGTH_SHORT).show();
                                             updateFollowButton(false);
+                                            userFollowingRef.removeValue(); // Remove from user's following node
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -140,12 +146,13 @@ public class organizationAdapter extends RecyclerView.Adapter<organizationAdapte
                                     });
                         } else {
                             // User is not following, so follow (add the node)
-                            databaseReference.setValue(true)
+                            organizationRef.setValue(true)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(itemView.getContext(), "Followed", Toast.LENGTH_SHORT).show();
                                             updateFollowButton(true);
+                                            userFollowingRef.setValue(true); // Add to user's following node
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -167,7 +174,7 @@ public class organizationAdapter extends RecyclerView.Adapter<organizationAdapte
 
         private void updateFollowButton(boolean isFollowing) {
             if (isFollowing) {
-                followButton.setEnabled(false);
+                followButton.setEnabled(true);
                 followButton.setBackgroundColor(itemView.getResources().getColor(android.R.color.darker_gray));
                 followButton.setText("Following");
             } else {
@@ -230,35 +237,37 @@ public class organizationAdapter extends RecyclerView.Adapter<organizationAdapte
                 .placeholder(R.drawable.profileimg) // You can set a placeholder image
                 .error(R.drawable.profileimg) // You can set an error image
                 .into(holder.orgImage);
-
-        // Set the state of the followButton based on the organization's followers
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            String userId = user.getUid();
-            String organizationId = currentItem.getOrganizationId();
-
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
-                    .child("organization")
-                    .child(organizationId)
-                    .child("followers")
-                    .child(userId);
-
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    // Check if the user is a follower
-                    boolean isFollowing = snapshot.exists() && (boolean) snapshot.getValue();
-
-                    // Update UI based on the user's following status
-                    holder.updateFollowButton(isFollowing);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e("TAG", "Error checking followers", error.toException());
-                }
-            });
-        }
+//
+//        // Set the state of the followButton based on the organization's followers
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user != null) {
+//            String userId = user.getUid();
+//            String organizationId = currentItem.getOrganizationId();
+//
+//            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+//                    .child("organization")
+//                    .child(organizationId)
+//                    .child("followers")
+//                    .child(userId);
+//
+//
+//            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    // Check if the user is a follower
+//                    boolean isFollowing = snapshot.exists() && (boolean) snapshot.getValue();
+//
+//                    // Update UI based on the user's following status
+//                    holder.updateFollowButton(isFollowing);
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                    Log.e("TAG", "Error checking followers", error.toException());
+//                }
+//            });
+//        }
+//    }
     }
 
     @Override

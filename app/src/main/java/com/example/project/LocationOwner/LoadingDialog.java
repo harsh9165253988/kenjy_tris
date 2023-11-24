@@ -21,7 +21,9 @@ public class LoadingDialog {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
-    public void show() {
+    public void show()
+
+    {
         dialog.show();
     }
 
