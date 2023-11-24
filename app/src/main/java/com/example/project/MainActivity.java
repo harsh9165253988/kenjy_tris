@@ -13,7 +13,7 @@ import com.example.project.user.userLogin;
 
 public class MainActivity extends AppCompatActivity {
 //public static final String CHANNEL_ID="My Channel";
-  //  public static final int NOTIFICATION_ID=100;
+    //  public static final int NOTIFICATION_ID=100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 // nm.notify(NOTIFICATION_ID,notification);   */
 
     }
-        public void animateUniverse(View view) {
+    public void animateUniverse(View view) {
         Button universeButton = findViewById(R.id.universeButton);
         ObjectAnimator scaleAnimator = (ObjectAnimator) AnimatorInflater.loadAnimator(this, R.animator.universe_scale);
         scaleAnimator.setTarget(universeButton);
@@ -104,6 +104,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-        //setContentView(R.layout.item_vacancy);
+    //setContentView(R.layout.item_vacancy);
 
-    }
+}

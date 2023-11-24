@@ -48,6 +48,19 @@ public class orgManageFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("organization");
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), orgProfileFragment.class);
+                startActivity(i);
+                getActivity().finish();
+            }
+        });
+
+        // Handle btnDeleteVacancy click if needed
+
+        // Fetch data from Firebase and update the RecyclerView
         fetchDataFromFirebase();
 
         return view;
@@ -62,7 +75,6 @@ public class orgManageFragment extends Fragment {
             }
         });
     }
-
 
     private void fetchDataFromFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -124,7 +136,6 @@ public class orgManageFragment extends Fragment {
 
 
 
-
     private void showDeleteVacancyPopup(Vacancy vacancy) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle("Delete Vacancy");
@@ -155,6 +166,5 @@ public class orgManageFragment extends Fragment {
             // Notify the adapter that the data set has changed
             adapter.notifyDataSetChanged();
         }
-
     }
 }
