@@ -38,6 +38,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.2.0")
     implementation("com.google.android.gms:play-services-tasks:18.0.2")
     implementation("com.google.firebase:firebase-messaging:23.3.1")
+    implementation("com.google.firebase:firebase-functions:20.4.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -49,6 +50,7 @@ dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
     implementation ("com.ismaeldivita.chipnavigation:chip-navigation-bar:1.3.4")
     implementation ("com.google.firebase:firebase-database:20.3.0")
+
 
     implementation ("com.google.firebase:firebase-storage:20.3.0")
     implementation ("com.google.firebase:firebase-bom:32.5.0")

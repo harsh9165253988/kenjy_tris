@@ -13,6 +13,8 @@ import android.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project.LocationOwner.organizationDashboard;
 import com.example.project.R;
 import com.example.project.adapter.vacancyAdapter;
 import com.example.project.dataModels.Vacancy;
@@ -73,7 +75,6 @@ public class orgManageFragment extends Fragment {
             }
         });
     }
-
 
     private void fetchDataFromFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

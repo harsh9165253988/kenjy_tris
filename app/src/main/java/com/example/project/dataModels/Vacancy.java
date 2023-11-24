@@ -14,9 +14,6 @@ public class Vacancy {
     public Vacancy() {
         // Default constructor required for calls to DataSnapshot.getValue(Vacancy.class)
     }
-    private String location;
-    private String dateTime;
-    private String preferredSkills;
 
     public Vacancy(String location, String dateTime, String preferredSkills) {
         this.location = location;
@@ -27,40 +24,26 @@ public class Vacancy {
     public boolean hasRequiredSkills(List<String> userSkills) {
         List<String> requiredSkills = getRequiredSkills();
         return userSkills.containsAll(requiredSkills);
-    public Vacancy() {
-            // Default constructor required for calls to DataSnapshot.getValue(Vacancy.class)
-        }
+    }
 
-    public Vacancy(String location, String dateTime, String preferredSkills) {
-            this.location = location;
-            this.dateTime = dateTime;
-            this.preferredSkills = preferredSkills;
+    public List<String> getRequiredSkills() {
+        if (preferredSkills != null && !preferredSkills.isEmpty()) {
+            return Arrays.asList(preferredSkills.split(","));
+        } else {
+            return Collections.emptyList();
         }
+    }
 
-        public boolean hasRequiredSkills (List < String > userSkills) {
-            List<String> requiredSkills = getRequiredSkills();
-            return userSkills.containsAll(requiredSkills);
-        }
+    public String getLocation() {
+        return location;
+    }
 
-        public List<String> getRequiredSkills () {
-            if (preferredSkills != null && !preferredSkills.isEmpty()) {
-                return Arrays.asList(preferredSkills.split(","));
-            } else {
-                return Collections.emptyList();
-            }
-        }
+    public String getDateTime() {
+        return dateTime;
+    }
 
-        public String getLocation () {
-            return location;
-        }
-
-        public String getDateTime () {
-            return dateTime;
-        }
-
-        public String getPreferredSkills () {
-            return preferredSkills;
-        }
+    public String getPreferredSkills() {
+        return preferredSkills;
     }
     public String getId() {
         return id;
@@ -70,4 +53,3 @@ public class Vacancy {
     }
 
 }
->>>>>>>>> Temporary merge branch 2
