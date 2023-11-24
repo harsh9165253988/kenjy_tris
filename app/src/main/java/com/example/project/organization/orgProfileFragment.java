@@ -83,6 +83,16 @@ public class orgProfileFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         builder = new AlertDialog.Builder(getActivity());
 
+        ImageView imageViewFollowers = view.findViewById(R.id.imageView3);
+        imageViewFollowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle click on follower image
+                Intent intent = new Intent(getActivity(), followersActivity.class);
+                startActivity(intent);
+            }
+        });
+
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +106,10 @@ public class orgProfileFragment extends Fragment {
 
                                 dialog.dismiss();
                                 Intent i=new Intent(getActivity(),orgainizationSignIn.class);
+
                                 startActivity(i);
+                                getActivity().finish();
+
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -104,6 +117,7 @@ public class orgProfileFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 // User clicked No, do nothing or dismiss the dialog
                                 dialog.dismiss();
+
                             }
                         })
                         .show();

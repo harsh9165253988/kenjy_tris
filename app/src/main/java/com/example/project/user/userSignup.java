@@ -81,27 +81,27 @@ public class userSignup extends AppCompatActivity {
         jobSelectonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder =new AlertDialog.Builder(userSignup.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(userSignup.this);
                 builder.setTitle("Select job");
                 builder.setCancelable(false);
                 builder.setMultiChoiceItems(jobarray, selectjob, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                        if (b){
+                        if (b) {
                             jobList.add(i);
                             Collections.sort(jobList);
-                        }else {
-                            jobList.remove(i);
+                        } else {
+                            jobList.remove((Integer) i); // Remove the Integer object, not the index
                         }
                     }
                 });
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        StringBuilder stringBuilder=new StringBuilder();
-                        for(int j=0;j<jobList.size();j++){
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int j = 0; j < jobList.size(); j++) {
                             stringBuilder.append(jobarray[jobList.get(j)]);
-                            if(j!=jobList.size()-1){
+                            if (j != jobList.size() - 1) {
                                 stringBuilder.append(", ");
                             }
                         }
@@ -117,11 +117,9 @@ public class userSignup extends AppCompatActivity {
                 builder.setNeutralButton("clear all", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        for(int j=0;j<selectjob.length;j++){
-                            selectjob[j]=false;
-                            jobList.clear();
-                            jobSelectonMenu.setText("");
-                        }
+                        selectjob = new boolean[jobarray.length];
+                        jobList.clear();
+                        jobSelectonMenu.setText("");
                     }
                 });
                 builder.show();

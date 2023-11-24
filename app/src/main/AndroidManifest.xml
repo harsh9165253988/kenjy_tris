@@ -18,19 +18,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".user.followingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".organization.followersActivity"
+            android:exported="false" />
 
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false"/>
 
         <activity
-            android:name="com.example.project.organization.donation"
-            android:label="donation">
-
-        </activity>
-
-
+            android:name=".organization.donation"
+            android:label="donation" />
         <activity
             android:name="com.paypal.android.sdk.payments.PaymentActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -52,6 +54,16 @@
 
 
 
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+
+
+        </service>
 
 
         <activity android:name=".organization.organizationDashboard">
@@ -107,10 +119,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
-
-        </activity>
-
+            android:exported="true"></activity>
     </application>
 
 </manifest>

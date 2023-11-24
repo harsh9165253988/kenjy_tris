@@ -92,7 +92,7 @@ public class userProfileFragment extends Fragment {
         settinga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), user_setting.class);
+                Intent intent = new Intent(getActivity(), followingActivity.class);
                 startActivity(intent);
 
             }

@@ -3,7 +3,5 @@
     <item
         android:id="@+id/menu_create_vacancy"
         android:title="Create Vacancy"/>
-    <item
-        android:id="@+id/menu_delete_vacancy"
-        android:title="Delete Vacancy"/>
+
 </menu>
