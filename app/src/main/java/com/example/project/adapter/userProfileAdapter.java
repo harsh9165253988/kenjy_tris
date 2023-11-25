@@ -62,7 +62,7 @@ public class userProfileAdapter extends RecyclerView.Adapter<userProfileAdapter.
             phoneNumberTextView = itemView.findViewById(R.id.number);
             skillsTextView = itemView.findViewById(R.id.skill);
 
-            // Add other TextViews as needed
+
         }
     }
 }

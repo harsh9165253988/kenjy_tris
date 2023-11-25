@@ -12,8 +12,6 @@ import com.example.project.organization.orgainizationSignIn;
 import com.example.project.user.userLogin;
 
 public class MainActivity extends AppCompatActivity {
-//public static final String CHANNEL_ID="My Channel";
-    //  public static final int NOTIFICATION_ID=100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

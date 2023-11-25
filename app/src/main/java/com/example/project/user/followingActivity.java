@@ -35,11 +35,8 @@ public class followingActivity extends AppCompatActivity {
         adapter = new followingAdapter(followingList);
         recyclerView.setAdapter(adapter);
 
-        fetchFollowing();
+
     }
 
-    private void fetchFollowing() {
-        // Your logic to fetch followers and update the followersList
-        // (This logic might be similar to what you have in the followersAdapter constructor)
-    }
+
 }

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="job_options">
-        <item>Communication and nevigation(satellites)</item>
-        <item>space farming</item>
-        <item>space architecture</item>
-        <item>Life support system</item>
-        <item>Medical support staff</item>
-        <item>Doctor(surgeon)</item>
-        <item>Combat and tactics</item>
-        <item>Piolet(Spacecraft)</item>
-        <item>Astrobiologist</item>
-        <item>Material Scientist</item>
-        <item>Astronomer</item>
-        <item>Planetary Scientist</item>
+        <item>COMMUNICATION AND NEVIGATION(SATELLITES)</item>
+        <item>SPACE FARMING</item>
+        <item>SPACE ARCHITECTURE</item>
+        <item>LIFE SUPPORT SYSTEM</item>
+        <item>MEDICAL SUPPORT STAFF</item>
+        <item>DOCTOR(SURGEON)</item>
+        <item>COMBAT AND TACTICS</item>
+        <item>PIOLET(SPACECRAFT)</item>
+        <item>ASTROBIOLOGIST</item>
+        <item>MATERIAL SCIENTIST</item>
+        <item>ASTRONOMER</item>
+        <item>PLANETARY SCIENTIST</item>
 
     </string-array>
 

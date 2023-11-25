@@ -65,13 +65,13 @@ public class orgainizationSignIn extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 loadingText.setVisibility(View.VISIBLE);
 
-                // Perform background task (simulate with a delay for illustration)
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             // Simulate some work
-                            Thread.sleep(3000);
+                            Thread.sleep(2000);
                         } catch (InterruptedException e) {
 
                         }
@@ -142,7 +142,7 @@ public class orgainizationSignIn extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database error if needed
+
                 Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_SHORT).show();
             }
         });

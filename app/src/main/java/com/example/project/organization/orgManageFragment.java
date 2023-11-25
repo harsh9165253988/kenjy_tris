@@ -58,7 +58,7 @@ public class orgManageFragment extends Fragment {
             }
         });
 
-        // Handle btnDeleteVacancy click if needed
+
 
         // Fetch data from Firebase and update the RecyclerView
         fetchDataFromFirebase();

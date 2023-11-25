@@ -80,6 +80,7 @@
                         android:layout_marginTop="36dp"
                         android:layout_marginBottom="16dp"
                         android:src="@drawable/profileimg"
+
                         android:backgroundTint="@color/grey"
                         app:layout_constraintBottom_toTopOf="@+id/name"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +94,7 @@
                         android:layout_width="300dp"
                         android:layout_height="33dp"
                         android:layout_marginTop="20dp"
-                        android:text="Full Name"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="#ffffff"
                         android:textSize="30dp"
@@ -107,7 +108,7 @@
                         android:layout_width="363dp"
                         android:layout_height="43dp"
                         android:layout_marginTop="70dp"
-                        android:text="email:farukhmansuri@gmail.com"
+                        android:text=""
                         android:textAlignment="center"
 
                         android:textColor="#ffffff"
@@ -157,8 +158,8 @@
 
                                 <ImageView
                                     android:id="@+id/imageView3"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:layout_gravity="center"
                                     android:layout_margin="2dp"
 
@@ -173,7 +174,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:text="followers"
+                                    android:text="following"
                                     android:textAlignment="center"
                                     android:textColor="#000000"
                                     android:textSize="13sp"
@@ -214,7 +215,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text="Age"
-                                            android:textColor="#182693"
+                                            android:textColor="@color/black"
                                             android:textSize="20sp" />
 
                                         <TextView
@@ -222,9 +223,9 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:text="23"
+                                            android:text=""
                                             android:textAlignment="viewEnd"
-                                            android:textColor="#5B5B5B"
+                                            android:textColor="@color/black"
                                             android:textSize="20sp" />
 
                                     </LinearLayout>
@@ -248,7 +249,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text="Gender"
-                                            android:textColor="#182693"
+                                            android:textColor="@color/black"
                                             android:textSize="20sp" />
 
                                         <TextView
@@ -256,9 +257,9 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:text="Male"
+                                            android:text=""
                                             android:textAlignment="viewEnd"
-                                            android:textColor="#5B5B5B"
+                                            android:textColor="@color/black"
                                             android:textSize="20sp" />
 
                                     </LinearLayout>
@@ -282,7 +283,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text="Mobile"
-                                            android:textColor="#182693"
+                                            android:textColor="@color/black"
                                             android:textSize="20sp" />
 
                                         <TextView
@@ -290,9 +291,9 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:text="6266652898"
+                                            android:text=""
                                             android:textAlignment="viewEnd"
-                                            android:textColor="#5B5B5B"
+                                            android:textColor="@color/black"
                                             android:textSize="20sp" />
 
                                     </LinearLayout>
@@ -315,7 +316,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             android:text="Skills"
-                                            android:textColor="#182693"
+                                            android:textColor="@color/black"
                                             android:textSize="20sp" />
 
                                         <TextView
@@ -323,9 +324,9 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:text="ggdfdgdfggfdffgfgfggfgfg"
+                                            android:text=""
                                             android:textAlignment="viewEnd"
-                                            android:textColor="#5B5B5B"
+                                            android:textColor="@color/black"
                                             android:layout_marginBottom="30dp"
                                             android:textSize="20sp" />
 

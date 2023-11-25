@@ -190,8 +190,7 @@ public class orgProfileFragment extends Fragment {
             }
         } else {
             Log.e("orgProfileFragment", "currentUser is null");
-            // Handle the case where currentUser is null
-            // Redirect the user to the login screen, for example
+
         }
 
         return view;
@@ -221,8 +220,7 @@ public class orgProfileFragment extends Fragment {
         // Upload the image to Firebase Storage
         storageRef.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
-                    // Image uploaded successfully
-                    // Now, you can save the image URL or download URL in your database or wherever needed
+
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         // uri is the download URL of the uploaded image
                         String imageUrl = uri.toString();
@@ -237,11 +235,9 @@ public class orgProfileFragment extends Fragment {
     }
 
     private void updateProfileImage(String imageUrl) {
-        // Now, you can update the user's profile image URL in the database
-        // For example, you can use databaseReference.child("profileImageUrl").setValue(imageUrl);
-        // Update your database structure accordingly
+
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        // Assuming you have a "profileImageUrl" field in your "human" node
+
         DatabaseReference userReference = databaseReference.child(currentUser.getUid());
         userReference.child("profileImageUrl").setValue(imageUrl)
                 .addOnSuccessListener(aVoid -> Log.d("orgProfileFragment", "Image URL updated successfully in the database"))

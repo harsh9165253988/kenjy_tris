@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.project.R;
@@ -41,6 +42,9 @@ public class addVacancyPopup {
         EditText editTextPreferredSkills = popupView.findViewById(R.id.editTextPreferredSkills);
         Button buttonCreateVacancy = popupView.findViewById(R.id.buttonCreateVacancy);
 
+        EditText orgnameEditText = popupView.findViewById(R.id.orgname);
+        EditText contactEditText = popupView.findViewById(R.id.contact);
+
 
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
         String currentDate=sdf.format(new Date());
@@ -55,12 +59,15 @@ public class addVacancyPopup {
         popupWindow.setOutsideTouchable(true);
         popupWindow.showAtLocation(anchorView, Gravity.CENTER, 0, 0);
 
+
         buttonCreateVacancy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String location = spinnerLocation.getSelectedItem().toString();
                 String dateTime = editTextDateTime.getText().toString();
                 String preferredSkills = editTextPreferredSkills.getText().toString();
+                String orgnameText = orgnameEditText.getText().toString();
+                String contactText = contactEditText.getText().toString();
 
                 // Initialize LottieAnimationView
                 LottieAnimationView lottieAnimationView = popupView.findViewById(R.id.lottieAnimationView);
@@ -68,13 +75,13 @@ public class addVacancyPopup {
                 // Start the animation
                 lottieAnimationView.playAnimation();
 
-                // Validate input if needed
+
 
                 // Notify the listener about the created vacancy
                 if (listener != null) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     String uid = user.getUid();
-                    Vacancy vacancy = new Vacancy(location, dateTime, preferredSkills);
+                    Vacancy vacancy = new Vacancy(location, dateTime, preferredSkills,orgnameText,contactText);
                     databaseReference.child(uid).child("vacancy").push().setValue(vacancy);
                     listener.onVacancyCreated(vacancy);
                 }

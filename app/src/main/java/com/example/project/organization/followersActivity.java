@@ -38,7 +38,6 @@ public class followersActivity extends AppCompatActivity {
     }
 
     private void fetchFollowers() {
-        // Your logic to fetch followers and update the followersList
-        // (This logic might be similar to what you have in the followersAdapter constructor)
+
     }
 }
