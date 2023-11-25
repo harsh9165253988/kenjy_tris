@@ -17,29 +17,26 @@
         android:scaleType="centerCrop"
         app:lottie_rawRes="@raw/background" />
 
-
-    <androidx.appcompat.widget.SearchView
+    <!-- TextView to display "Followers" -->
+    <TextView
+        android:id="@+id/followersTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:id="@+id/search"
-        app:iconifiedByDefault="false"
-        app:searchHintIcon="@null"
-        app:queryHint="Enter name or skill..."
-        android:focusable="false"
-        app:closeIcon="@drawable/cross_icon"
-        app:searchIcon="@drawable/search_icon"
-        android:background="@drawable/round_corner"/>
+        android:padding="10dp"
+        android:text="     Followers ...."
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:background="@drawable/round_corner" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
         android:layout_marginBottom="60dp"
-        android:layout_below="@id/search"
+        android:layout_below="@id/followersTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
-        android:scrollbars="vertical"/>
-
-
+        android:scrollbars="vertical" />
 </RelativeLayout>

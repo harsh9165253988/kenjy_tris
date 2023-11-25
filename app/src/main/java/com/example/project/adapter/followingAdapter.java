@@ -100,7 +100,7 @@ public class followingAdapter extends RecyclerView.Adapter<followingAdapter.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView orgName, email, contact, mission;
+        TextView orgName, email, contact, mission,Location;
         ImageView profilephoto;
 
         public ViewHolder(View itemView) {
@@ -110,6 +110,7 @@ public class followingAdapter extends RecyclerView.Adapter<followingAdapter.View
             contact = itemView.findViewById(R.id.orgContact);
             mission = itemView.findViewById(R.id.orgMission);
             profilephoto = itemView.findViewById(R.id.profImage);
+            Location=itemView.findViewById(R.id.orgLocation);
         }
     }
 
@@ -129,6 +130,7 @@ public class followingAdapter extends RecyclerView.Adapter<followingAdapter.View
             holder.email.setText(following.getMail());
             holder.contact.setText(following.getContact());
             holder.mission.setText(following.getMission());
+            holder.Location.setText(following.getLocation());
 
             String profilePhotoUrl = following.getProfileImageUrl();
 

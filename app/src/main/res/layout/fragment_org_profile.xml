@@ -45,8 +45,10 @@
             android:layout_height="130dp"
             android:layout_marginTop="40dp"
             android:backgroundTint="@color/grey"
+
             android:foregroundGravity="center"
-            android:src="@drawable/img_3"
+            android:src="@drawable/profileimg"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/name"
@@ -59,7 +61,7 @@
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:layout_marginBottom="15dp"
-            android:text="OrgName"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/grey"
             android:textSize="30sp"
@@ -77,7 +79,7 @@
 
             android:layout_marginTop="-60dp"
             android:layout_marginBottom="16dp"
-            android:text="About mission"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="25dp"
@@ -186,7 +188,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="utkarsh@gmail,com"
+                            android:text=""
                             android:textAlignment="viewEnd"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
@@ -220,7 +222,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="6266652898"
+                            android:text=""
                             android:textAlignment="viewEnd"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
@@ -254,7 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="egypt"
+                            android:text=""
                             android:textAlignment="viewEnd"
                             android:textColor="@color/black"
                             android:textSize="20sp" />

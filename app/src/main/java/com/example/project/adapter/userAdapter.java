@@ -106,7 +106,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
         holder.contact.setText(currentItem.getMob());
         holder.skills.setText(currentItem.getSkl());
 
-        // Assuming the profile photo URL is stored in the 'profilePhotoUrl' field of your userDataModel
+
         String profilePhotoUrl = currentItem.getProfileImageUrl();
 
         // Use Glide to load the profile photo into the ImageView

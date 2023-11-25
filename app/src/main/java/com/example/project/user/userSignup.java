@@ -102,7 +102,7 @@ public class userSignup extends AppCompatActivity {
                         for (int j = 0; j < jobList.size(); j++) {
                             stringBuilder.append(jobarray[jobList.get(j)]);
                             if (j != jobList.size() - 1) {
-                                stringBuilder.append(", ");
+                                stringBuilder.append(",");
                             }
                         }
                         jobSelectonMenu.setText(stringBuilder.toString());

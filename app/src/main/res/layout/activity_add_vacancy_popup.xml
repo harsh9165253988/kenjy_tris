@@ -26,24 +26,47 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationView"
             android:layout_width="match_parent"
-            android:layout_height="403dp"
+            android:layout_height="wrap_content"
 
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/cicle"
             app:lottie_loop="true" />
 
         <LinearLayout
-            android:layout_width="294dp"
-            android:layout_height="321dp"
-            android:layout_margin="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="vertical"
-            android:padding="30dp">
+            android:padding="10dp">
+            <EditText
+                android:id="@+id/orgname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Organization Name" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+            <EditText
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:inputType="number"
+                android:hint="Contact" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
 
             <Spinner
                 android:id="@+id/spinnerlocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location"
+                android:layout_marginTop="20dp"
+
 
                 android:padding="10dp" />
 
@@ -58,6 +81,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="Date" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
 
 
             <EditText
@@ -65,14 +92,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Preferred Skills"
-                android:textAllCaps="false" />
+                android:hint="Preferred Skills in caps" />
 
             <Button
                 android:id="@+id/buttonCreateVacancy"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginStart="43dp"
                 android:text="Create Vacancy" />
 
         </LinearLayout>

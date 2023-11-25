@@ -85,10 +85,7 @@ public class orgDashboardFragment extends Fragment {
     }
 
     private void fetchDataFromFirebase() {
-        // Use Firebase Database or Firestore to fetch data
-        // Update dataList with the fetched data
-        // Notify the adapter about the data change
-        // Example: Use Firebase Realtime Database
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("/human");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

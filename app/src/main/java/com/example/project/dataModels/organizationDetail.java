@@ -31,7 +31,7 @@ public class organizationDetail implements Parcelable {
         OrgName = in.readString();
         Location = in.readString();
         organizationId = in.readString();
-        // Read your other properties
+
     }
     public static final Creator<organizationDetail> CREATOR = new Creator<organizationDetail>() {
         @Override
@@ -54,7 +54,7 @@ public class organizationDetail implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(OrgName);
         dest.writeString(Location);
-        // Write your other properties
+
     }
     public organizationDetail() {
         // Default constructor required for Firebase

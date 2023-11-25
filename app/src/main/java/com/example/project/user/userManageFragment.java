@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.project.R;
+import com.example.project.adapter.preferredVacancyAdapter;
 import com.example.project.dataModels.Vacancy;
 import com.example.project.adapter.vacancyAdapter;
 import com.example.project.dataModels.userDataModel;
@@ -35,7 +36,7 @@ public class userManageFragment extends Fragment {
     private DatabaseReference usersReference;
     private DatabaseReference vacanciesReference;
     private RecyclerView recyclerView;
-    private vacancyAdapter adapter;
+    private preferredVacancyAdapter adapter;
     private ImageView backArrow;
 
     @Override
@@ -48,7 +49,7 @@ public class userManageFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new vacancyAdapter(new ArrayList<>(),requireContext());
+        adapter = new preferredVacancyAdapter(new ArrayList<>(),requireContext());
         recyclerView.setAdapter(adapter);
         backArrow = view.findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -82,10 +83,10 @@ public class userManageFragment extends Fragment {
                             Object sklObject = user.getSkl();
 
                             if (sklObject instanceof String) {
-                                List<String> userSkl = Arrays.asList(((String) sklObject).split(","));
+                                List<String> userSkl = Arrays.asList(((String)sklObject).split(","));
                                 fetchVacanciesBasedOnSkills(userSkl);
                             } else if (sklObject instanceof List<?>) {
-                                fetchVacanciesBasedOnSkills((List<String>) sklObject);
+                                fetchVacanciesBasedOnSkills((List<String>)sklObject);
                             } else {
                                 // Handle other cases if needed
                             }

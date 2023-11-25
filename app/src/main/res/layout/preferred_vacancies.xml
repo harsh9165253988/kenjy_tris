@@ -24,11 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="120dp"
-            android:layout_toStartOf="@+id/dustbinIcon"
-            android:text="Comapny Name"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
+            android:text="Comapny Name"
             android:textStyle="bold" />
 
         <TextView
@@ -67,9 +65,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dateTimeTextView"
             android:layout_marginStart="8dp"
-            android:text="contact"
+            android:text="contact: "
+            android:clickable="true"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
+            android:textColor="#04329F"
             android:textSize="16sp" />
 
         <!-- Skills TextView -->
@@ -88,16 +87,7 @@
 
         <!-- Dustbin Icon -->
 
-        <ImageView
-            android:id="@+id/dustbinIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:clickable="true"
-            android:src="@drawable/delete" />
+
 
 
     </RelativeLayout>

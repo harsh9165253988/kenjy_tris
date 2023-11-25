@@ -79,7 +79,7 @@ public class userLogin extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(3000); // Simulate some work
+                            Thread.sleep(2000); // Simulate some work
                         } catch (InterruptedException e) {
 
                         }

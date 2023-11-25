@@ -2,9 +2,12 @@ package com.example.project.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.project.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -56,6 +59,7 @@ public class userDashboard extends AppCompatActivity {
                 finish();
             } else {
                 // Show a toast or message indicating that the user should press back again to exit
+                Toast.makeText(getApplicationContext(), "Doble press to logout!", Toast.LENGTH_SHORT).show();
                 doubleBackToExitPressedOnce = true;
                 // Use a Handler to reset the doubleBackToExitPressedOnce variable after a specified delay
                 new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 1000); // 2000 milliseconds = 2 seconds
