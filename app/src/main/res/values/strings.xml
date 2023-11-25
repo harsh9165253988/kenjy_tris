@@ -18,7 +18,7 @@
     <string name="organization_password">password</string>
     <string name="organization_location">location</string>
     <string name="organization_mission">about mission</string>
-    <string name="organization_contact">organization contact</string>
+    <string name="organization_contact">organization co</string>
     <string name="mission">This field cannot be empty </string>
 
     <string name="passworderror">The password must contain at least 8 character,and include uppercase and lowercase,number and a special character</string>

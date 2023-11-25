@@ -46,7 +46,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
 
-                android:text="  Instruction to donate succesfully:\n  \n  1. Click on above donation button.\n\n    You will be redirected to phonpe \n    website\n \n 2.Click on DOWNLOAD NOW\n \n 3.Click on GET IT ON GOOGLE PLAY \n \n 4. Install if you dont have Phonepe in your\n   mobile.\n\n Now you are in,complete your transection. \n\n\n                                    'THANK YOU' "
+                android:text="  Instruction to donate succesfully:\n  \n  1. Click on above donation button.\n\n    You will be redirected to phonpe \n    website\n \n 2.Click on DOWNLOAD NOW\n \n 3.Click on GET IT ON GOOGLE PLAY mobile. \n \n 4. Install if you dont have Phonepe in your\n \n5.use organization contact number  \n\n Now you are in,complete your transection. \n\n\n                                    'THANK YOU' "
                 android:textColor="@color/black"
                 android:textSize="17dp"
                 android:textStyle="bold" />
